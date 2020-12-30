@@ -81,3 +81,114 @@ final int MAX_VALUE = 1000;
 ## Ex9
 
 `System.out.printf()`는 format이 있는 형태로 출력해주는 함수이다.
+
+좀 더 자세한 사항은 Eclipse에서 F2를 눌러 설명을 보거나 [Formatter Java Docs](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html#syntax)을 참고.
+
+## Ex10
+
+`java.util.Scanner` 를 이용하여 콘솔에서 String으로 입력을 받을 수 있다.
+
+## Ex11
+
+Overflow 예제이다.
+
+0000 부터 1111 까지 줄 세웠을 때, 이를 실제 숫자에 매칭하다보면 자릿수 제한이나 부호 표시등에 의해서 숫자값이 크게 바뀌는 부분이 있다. 이를 overflow라고 한다.
+
+## Ex12
+
+정수형, 문자형, 문자열 사이에서의 타입 변환 예제
+
+'3' - '0'과 같은 방법은 기본적으로 '3'이 정수 51에 맵핑되어 있고, '0'은 정수 48에 연결 되어있어 이 차이가 3임을 이용한다.
+
+# Practice
+
+## 2-1
+
+|  type  | 1 byte  | 2 byte | 4 byte | 8 byte |
+| :----: | :-----: | :----: | :----: | :----: |
+| 논리형 | boolean |        |        |        |
+| 문자형 |         |  char  |        |        |
+| 정수형 |  byte   | short  |  int   |  long  |
+| 실수형 |         |        | float  | double |
+
+## 2-2
+
+- keyword
+
+1. if
+
+- keyword가 아닌것
+
+2. True
+3. NULL
+4. Class
+5. System
+
+Java는 소스코드에서 대소문자를 구분하고, 구분하지 않는다해도 true / null은 literal, System은 객체이다. Class 또한 객체
+
+[Java Keyword](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html)
+
+## 2-3
+
+char는 0~65535
+
+## 2-4
+
+```java
+byte b = 256;
+char c = '';
+char answer = 'no';
+float f = 3.14
+double d = 1.4e3f;
+```
+
+1, 2, 3, 4가 잘못됨. 1은 literal이 int, 2는 빈 문자 3은 문자를 하나만 써야하고 4는 literal이 double이다.
+5는 literal이 float인데 double로 자동 변환된다.
+
+## 2-5
+
+```java
+int i = 100;
+long l = 100L;
+final float PI = 3.14f;
+```
+
+- 리터럴
+  100, 100L, 3.14f
+- 키워드
+  int, long, final, float
+- 변수
+  i, l
+- 상수
+  PI
+
+## 2-6
+
+Byte는 byte primitive를 객체로 한것이고 나머지는 primitive type으로 keyword이기도 하다.
+
+## 2-7
+
+```java
+char c = 48;
+System.out.println("1"+"2");         // "12"
+System.out.println(true+"");         // "true"
+System.out.println('A'+'B');         // (int)131
+System.out.println('1'+2);           // (int)51
+System.out.println('1'+'2');         // (int)99
+System.out.println('J'+"ava");       // "Java"
+//		System.out.println(true+null); // error
+System.out.println(c);               // '0'
+```
+
+## 2-8
+
+x y z의 값을 서로 바꾸는 코드는 다음과 같다.
+
+```java
+int tmp = x;
+x = y;
+y = z;
+z = tmp;
+```
+
+임시 변수 하나를 사용하여 저장한다.
