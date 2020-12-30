@@ -14,6 +14,7 @@ public class Ex2_10 {
 		
 		System.out.println("입력내용 : "+input);
 		System.out.printf("num=%d%n", num);
+		scanner.close();
 	}
 
 }
