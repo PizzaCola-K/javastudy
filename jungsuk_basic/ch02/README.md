@@ -1,4 +1,4 @@
-# Chapter 2
+# Chapter 2 변수
 
 ## Ex1
 
