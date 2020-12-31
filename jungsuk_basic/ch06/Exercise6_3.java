@@ -1,17 +1,24 @@
 package ch06;
 
-public class Exercise6_2 {
+public class Exercise6_3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Student s = new Student("È«±æµ¿", 1, 1, 100, 60, 76);
+		Student s = new Student();
+		s.name = "È«±æµ¿";
+		s.ban  = 1;
+		s.no   = 1;
+		s.kor  = 100;
+		s.eng  = 60;
+		s.math = 76;
 		
-		String str = s.info();
-		System.out.println(str);
+		System.out.println("ÀÌ¸§:"+s.name);
+		System.out.println("ÃÑÁ¡:"+s.getTotal());
+		System.out.println("Æò±Õ:"+s.getAverage());
 	}
 
 }
-/*
+
 class Student {
 	String name;
 	int ban;
@@ -19,7 +26,7 @@ class Student {
 	int kor;
 	int eng;
 	int math;
-	
+	Student() {}
 	Student(String name, int ban, int no, int kor, int eng, int math) {
 		this.name = name;
 		this.ban  = ban ;
@@ -33,5 +40,10 @@ class Student {
 		double avg = (int)(sum*10/3.0+0.5)/10.0;
 		return this.name+","+this.ban+","+this.no+","+this.kor+","+this.eng+","+this.math+","+sum+","+avg;
 	}
+	int getTotal() {
+		return this.kor+this.eng+this.math;
+	}
+	float getAverage() {
+		return (int)(this.getTotal()*10/3.0+0.5)/10.0f;
+	}
 }
-*/
