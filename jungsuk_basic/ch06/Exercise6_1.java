@@ -4,6 +4,7 @@ public class Exercise6_1 {
 
 }
 
+/*
 class Student {
 	String name;
 	int ban;
@@ -12,3 +13,4 @@ class Student {
 	int eng;
 	int math;
 }
+*/
