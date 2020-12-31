@@ -19,15 +19,15 @@ public class Exercise4_1 {
 		ch = 'a';
 		if('a'<=ch&&ch<='z' || 'A'<=ch&&ch<='Z')
 			System.out.println("5: isAlphabet");
-		int year = 100;
+		int year = 2400;
 		if( year%400 == 0 || (year%4 == 0 && year%100 != 0) )
 			System.out.println("6: multiples of 400 or multiples of 4 but not 100");
 		boolean powerOn = false;
 		if(!powerOn)
-			System.out.println("7:Power Off");
+			System.out.println("7: Power Off");
 		String str = "yes";
 		if(str.equals("yes"))
-			System.out.println("8:str is \"yes\"");
+			System.out.println("8: str is \"yes\"");
 	}
 
 }
