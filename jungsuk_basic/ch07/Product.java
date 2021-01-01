@@ -8,5 +8,5 @@ class Product {
 		this.price = price;
 		this.bonusPoint = (int)(price/10.0);
 	}
-
+	Product(){}
 }
