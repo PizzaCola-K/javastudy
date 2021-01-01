@@ -15,6 +15,23 @@ class SutdaDeck {
 			cards[i+10] = new SutdaCard(i+1,false);
 		}
 	}
+	void suffle() {
+		SutdaCard tmpCard = null;
+		int randIdx;
+		for(int i = 0 ; i<cards.length ; i++) {
+			randIdx = (int)(Math.random()*cards.length);
+			tmpCard = cards[0];
+			cards[0] = cards[randIdx];
+			cards[randIdx] = tmpCard;
+		}
+	}
+	SutdaCard pick(int index) {
+		return cards[index];
+	}
+	SutdaCard pick() {
+		int randIdx = (int)(Math.random()*cards.length);
+		return cards[randIdx];
+	}
 }
 
 class SutdaCard {
