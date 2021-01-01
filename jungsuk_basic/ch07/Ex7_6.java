@@ -9,6 +9,7 @@ public class Ex7_6 {
 		// TODO Auto-generated method stub
 		out.println(random());
 		out.println("Math.PI:"+PI);
+		
 	}
 
 }
