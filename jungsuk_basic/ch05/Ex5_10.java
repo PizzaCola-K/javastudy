@@ -2,7 +2,7 @@ package ch05;
 
 import java.util.Scanner;
 
-public class Ex5_10 {
+class Ex5_10 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -1,6 +1,6 @@
 package ch06;
 
-public class Marine {
+class Marine {
 	int x = 0, y = 0;
 	int hp = 60;
 	static int weapon = 6;

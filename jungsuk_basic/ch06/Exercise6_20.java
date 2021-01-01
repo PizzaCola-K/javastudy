@@ -1,6 +1,6 @@
 package ch06;
 
-public class Exercise6_20 {
+class Exercise6_20 {
 	static int max(int[] arr) {
 		if(arr == null || arr.length == 0) {
 			return -999999;

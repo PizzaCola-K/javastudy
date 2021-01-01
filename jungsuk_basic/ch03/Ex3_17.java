@@ -1,6 +1,6 @@
 package ch03;
 
-public class Ex3_17 {
+class Ex3_17 {
 	public static void main(String[] args) {
 		int x, y, z;
 		int absX, absY, absZ;

@@ -1,6 +1,6 @@
 package ch06;
 
-public class Ex6_14 {
+class Ex6_14 {
 	static {
 		System.out.println("static { }");
 	}

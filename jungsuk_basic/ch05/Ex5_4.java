@@ -2,7 +2,7 @@ package ch05;
 
 import java.util.Arrays;
 
-public class Ex5_4 {
+class Ex5_4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

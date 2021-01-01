@@ -1,6 +1,6 @@
 package ch05;
 
-public class Exercise5_4 {
+class Exercise5_4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

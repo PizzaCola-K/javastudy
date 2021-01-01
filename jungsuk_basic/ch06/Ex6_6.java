@@ -2,7 +2,7 @@ package ch06;
 
 class Data {int x;}
 
-public class Ex6_6 {
+class Ex6_6 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

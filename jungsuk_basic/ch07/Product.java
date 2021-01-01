@@ -1,6 +1,6 @@
 package ch07;
 
-public class Product {
+class Product {
 	int price;
 	int bonusPoint;
 	

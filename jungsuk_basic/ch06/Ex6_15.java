@@ -1,6 +1,6 @@
 package ch06;
 
-public class Ex6_15 {
+class Ex6_15 {
 	static int[] arr = new int[10];
 	
 	static {

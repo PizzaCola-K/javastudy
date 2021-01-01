@@ -1,7 +1,7 @@
 package ch05;
 import java.util.Arrays;
 
-public class Exercise5_1 {
+class Exercise5_1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

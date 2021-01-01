@@ -1,6 +1,6 @@
 package ch06;
 
-public class PlayingCard {
+class PlayingCard {
 	int kind; // instance variable
 	int num;  // instance variable
 	

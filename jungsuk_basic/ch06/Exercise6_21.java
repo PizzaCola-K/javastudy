@@ -1,6 +1,6 @@
 package ch06;
 
-public class Exercise6_21 {
+class Exercise6_21 {
 	static int abs(int value) {
 		return value>0?value:-value;
 	}

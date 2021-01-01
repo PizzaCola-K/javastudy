@@ -1,6 +1,6 @@
 package ch06;
 
-public class Exercise6_18 {
+class Exercise6_18 {
 	static boolean isNumber(String str) {
 		for(int i = 0; i<str.length();i++) {
 			char ch = str.charAt(i);

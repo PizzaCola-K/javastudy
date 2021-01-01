@@ -1,6 +1,6 @@
 package ch07;
 
-public class Car {
+class Car {
 	String color;
 	int door;
 	

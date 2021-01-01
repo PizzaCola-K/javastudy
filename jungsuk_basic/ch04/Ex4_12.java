@@ -1,6 +1,6 @@
 package ch04;
 
-public class Ex4_12 {
+class Ex4_12 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

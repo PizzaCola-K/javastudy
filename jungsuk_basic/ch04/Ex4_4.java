@@ -2,7 +2,7 @@ package ch04;
 
 import java.util.Scanner;
 
-public class Ex4_4 {
+class Ex4_4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

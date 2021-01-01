@@ -1,6 +1,6 @@
 package ch07;
 
-public class Buyer {
+class Buyer {
 	int money = 1000;
 	int bonusPoint = 0;
 	void buy (Product p) {

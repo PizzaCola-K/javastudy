@@ -1,6 +1,6 @@
 package ch06;
 
-public class Exercise6_17 {
+class Exercise6_17 {
 	static int[] shuffle(int[] arr) {
 		int[] result = new int[arr.length];
 		

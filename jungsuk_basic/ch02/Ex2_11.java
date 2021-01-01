@@ -1,6 +1,6 @@
 package ch02;
 
-public class Ex2_11 {
+class Ex2_11 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

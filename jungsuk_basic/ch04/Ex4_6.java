@@ -2,7 +2,7 @@ package ch04;
 
 import java.util.Scanner;
 
-public class Ex4_6 {
+class Ex4_6 {
 	public static void main(String[] args) {
 		System.out.print("현재 월을 입력하세요.>");
 		

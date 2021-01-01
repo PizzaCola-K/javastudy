@@ -1,6 +1,6 @@
 package ch05;
 
-public class Ex5_8 {
+class Ex5_8 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
