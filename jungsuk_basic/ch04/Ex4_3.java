@@ -6,14 +6,14 @@ class Ex4_3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.print("¼ıÀÚ¸¦ ÇÏ³ª ÀÔ·ÂÇÏ¼¼¿ä.>");
+		System.out.print("ìˆ«ìë¥¼ í•˜ë‚˜ ì…ë ¥í•˜ì„¸ìš”.>");
 		Scanner scanner = new Scanner(System.in);
 		int input = scanner.nextInt();
 		
 		if(input == 0) {
-			System.out.println("ÀÔ·ÂÇÏ½Å ¼ıÀÚ´Â 0ÀÔ´Ï´Ù.");
+			System.out.println("ì…ë ¥í•˜ì‹  ìˆ«ìëŠ” 0ì…ë‹ˆë‹¤.");
 		} else {
-			System.out.println("ÀÔ·ÂÇÏ½Å ¼ıÀÚ´Â 0ÀÌ ¾Æ´Õ´Ï´Ù.");
+			System.out.println("ì…ë ¥í•˜ì‹  ìˆ«ìëŠ” 0ì´ ì•„ë‹™ë‹ˆë‹¤.");
 		}
 		scanner.close();
 	}

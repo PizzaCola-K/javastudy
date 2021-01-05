@@ -7,7 +7,7 @@ class Ex4_10 {
 		int sum = 0;
 		for(int i = 1 ; i <= 5 ; i++) {
 			sum += i;
-			System.out.printf("1ºÎÅÍ %2d ±îÁöÀÇ ÇÕ : %2d%n", i, sum);
+			System.out.printf("1ë¶€í„° %2d ê¹Œì§€ì˜ í•© : %2d%n", i, sum);
 		}
 	}
 

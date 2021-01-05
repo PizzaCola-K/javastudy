@@ -7,7 +7,7 @@ class Ex4_14 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int num = 0, sum = 0;
-		System.out.print("¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.(¿¹:12345)>");
+		System.out.print("ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”.(ì˜ˆ:12345)>");
 		Scanner scanner = new Scanner(System.in);
 		num = scanner.nextInt();
 		System.out.println(num);
@@ -17,7 +17,7 @@ class Ex4_14 {
 			System.out.printf("sum=%3d num=%d%n", sum, num);
 			num /=10;
 		}
-		System.out.println("°¢ ÀÚ¸®¼öÀÇ ÇÕ:"+sum);
+		System.out.println("ê° ìë¦¬ìˆ˜ì˜ í•©:"+sum);
 		scanner.close();
 	}
 

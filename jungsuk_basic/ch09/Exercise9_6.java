@@ -47,7 +47,7 @@ class Exercise9_6 {
 				System.out.println(list);
 				list.clear();
 			} else {
-				System.out.println("ÀÏÄ¡ÇÏ´Â ¹øÈ£°¡ ¾ø½À´Ï´Ù.");
+				System.out.println("ì¼ì¹˜í•˜ëŠ” ë²ˆí˜¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			}
 		}
 	}

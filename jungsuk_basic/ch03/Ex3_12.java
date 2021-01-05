@@ -6,8 +6,8 @@ class Ex3_12 {
 		// TODO Auto-generated method stub
 		int x = 10;
 		int y = 8;
-		System.out.printf("%d¸¦ %d·Î ³ª´©¸é, %n",x, y);
-		System.out.printf("¸òÀº %dÀÌ°í ³ª¸ÓÁö´Â %dÀÔ´Ï´Ù.", x/y, x%y);
+		System.out.printf("%dë¥¼ %dë¡œ ë‚˜ëˆ„ë©´, %n",x, y);
+		System.out.printf("ëª«ì€ %dì´ê³  ë‚˜ë¨¸ì§€ëŠ” %dì…ë‹ˆë‹¤.", x/y, x%y);
 	}
 
 }

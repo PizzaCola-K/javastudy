@@ -13,8 +13,8 @@ class Ex5_2 {
 			sum += score[i];
 		}
 		average = sum / (float)score.length;
-		System.out.println("ÃÑÇÕ : "+sum);
-		System.out.println("Æò±Õ : "+average);
+		System.out.println("ì´í•© : "+sum);
+		System.out.println("í‰ê·  : "+average);
 	}
 
 }

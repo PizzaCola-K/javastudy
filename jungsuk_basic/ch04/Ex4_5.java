@@ -9,7 +9,7 @@ class Ex4_5 {
 		int score = 0;
 		char grade = ' ', opt = '0';
 		
-		System.out.print("Á¡¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.>");
+		System.out.print("ì ìˆ˜ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.>");
 		Scanner scanner = new Scanner(System.in);
 		score = scanner.nextInt();
 		if(score >= 90) {
@@ -29,7 +29,7 @@ class Ex4_5 {
 		} else {
 			grade = 'C';
 		}
-		System.out.printf("´ç½ÅÀÇ ÇĞÁ¡Àº %c%cÀÔ´Ï´Ù.%n", grade, opt);
+		System.out.printf("ë‹¹ì‹ ì˜ í•™ì ì€ %c%cì…ë‹ˆë‹¤.%n", grade, opt);
 		scanner.close();
 	}
 

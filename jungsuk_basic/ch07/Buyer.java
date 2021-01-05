@@ -7,13 +7,13 @@ class Buyer {
 	int i = 0;
 	void buy (Product p) {
 		if(this.money < p.price) {
-			System.out.println("ÀÜ¾×ÀÌ ºÎÁ·ÇÏ¿© ¹°°ÇÀ» »ì ¼ö ¾ø½À´Ï´Ù.");
+			System.out.println("ìž”ì•¡ì´ ë¶€ì¡±í•˜ì—¬ ë¬¼ê±´ì„ ì‚´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			return;
 		}
 		money -= p.price;
 		bonusPoint += p.bonusPoint;
 		cart[i++] = p;
-		System.out.println(p+"À»/¸¦ ±¸ÀÔÇÏ¼Ì½À´Ï´Ù.");
+		System.out.println(p+"ì„/ë¥¼ êµ¬ìž…í•˜ì…¨ìŠµë‹ˆë‹¤.");
 	}
 	void summary() {
 		int sum = 0;
@@ -24,7 +24,7 @@ class Buyer {
 			sum += cart[i].price;
 			itemList += cart[i]+", ";
 		}
-		System.out.println("±¸ÀÔÇÏ½Å ¹°Ç°ÀÇ ÃÑ ±Ý¾×Àº "+sum+"¸¸¿ø ÀÔ´Ï´Ù.");
-		System.out.println("±¸ÀÔÇÏ½Å Á¦Ç°Àº "+itemList+"ÀÔ´Ï´Ù.");
+		System.out.println("êµ¬ìž…í•˜ì‹  ë¬¼í’ˆì˜ ì´ ê¸ˆì•¡ì€ "+sum+"ë§Œì› ìž…ë‹ˆë‹¤.");
+		System.out.println("êµ¬ìž…í•˜ì‹  ì œí’ˆì€ "+itemList+"ìž…ë‹ˆë‹¤.");
 	}
 }

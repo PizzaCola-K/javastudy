@@ -25,7 +25,7 @@ class Ex10_5 {
 		endDay.add(Calendar.DATE, -1);
 		START_DAY_OF_WEEK = startDay.get(Calendar.DAY_OF_WEEK);
 		END_DAY = endDay.get(Calendar.DATE);
-		System.out.println("      "+args[0]+"³â "+args[1]+"¿ù");
+		System.out.println("      "+args[0]+"ë…„ "+args[1]+"ì›”");
 		System.out.println(" SU MO TU WE TH FR SA");
 		
 		for(int i = 1; i<START_DAY_OF_WEEK; i++)
@@ -36,6 +36,6 @@ class Ex10_5 {
 		}
 	}
 	public static String toString(Calendar date) {
-		return date.get(Calendar.YEAR)+"³â "+(date.get(Calendar.MONTH)+1)+"¿ù "+date.get(Calendar.DATE)+"ÀÏ ";
+		return date.get(Calendar.YEAR)+"ë…„ "+(date.get(Calendar.MONTH)+1)+"ì›” "+date.get(Calendar.DATE)+"ì¼ ";
 	}
 }

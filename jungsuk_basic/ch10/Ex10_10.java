@@ -17,14 +17,14 @@ class Ex10_10 {
 		
 		Date inDate = null;
 		
-		System.out.println("³¯Â¥¸¦ "+pattern+"ÀÇ ÇüÅÂ·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.(ex.2021/01/01)");
+		System.out.println("ë‚ ì§œë¥¼ "+pattern+"ì˜ í˜•íƒœë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.(ex.2021/01/01)");
 		
 		while (s.hasNextLine()) {
 			try {
 				inDate = df.parse(s.nextLine());
 				break;
 			} catch (Exception e) {
-				System.out.println("³¯Â¥¸¦ "+pattern+"ÀÇ ÇüÅÂ·Î ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.(ex.2021/01/01)");
+				System.out.println("ë‚ ì§œë¥¼ "+pattern+"ì˜ í˜•íƒœë¡œ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.(ex.2021/01/01)");
 			}
 		}
 		
@@ -33,7 +33,7 @@ class Ex10_10 {
 		Calendar today = Calendar.getInstance();
 		
 		long dayDiff = (cal.getTimeInMillis() - today.getTimeInMillis())/(60*60*1000);
-		System.out.println("ÀÔ·ÂÇÏ½Å ³¯Â¥´Â ÇöÀç¿Í "+dayDiff+"½Ã°£ Â÷ÀÌ°¡ ÀÖ½À´Ï´Ù.");
+		System.out.println("ì…ë ¥í•˜ì‹  ë‚ ì§œëŠ” í˜„ì¬ì™€ "+dayDiff+"ì‹œê°„ ì°¨ì´ê°€ ìˆìŠµë‹ˆë‹¤.");
 		s.close();
 	}
 

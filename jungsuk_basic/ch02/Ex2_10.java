@@ -8,11 +8,11 @@ class Ex2_10 {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.print("µÎÀÚ¸® Á¤¼ö¸¦ ÇÏ³ª ÀÔ·ÂÇØÁÖ¼¼¿ä.>");
+		System.out.print("ë‘ìžë¦¬ ì •ìˆ˜ë¥¼ í•˜ë‚˜ ìž…ë ¥í•´ì£¼ì„¸ìš”.>");
 		String input = scanner.nextLine();
 		int num = Integer.parseInt(input);
 		
-		System.out.println("ÀÔ·Â³»¿ë : "+input);
+		System.out.println("ìž…ë ¥ë‚´ìš© : "+input);
 		System.out.printf("num=%d%n", num);
 		scanner.close();
 	}

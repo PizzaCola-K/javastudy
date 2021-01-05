@@ -16,8 +16,8 @@ class Ex5_3 {
 				min = score[i];
 			}
 		}
-		System.out.println("�ִ� : "+max);
-		System.out.println("�ּڰ� : "+min);
+		System.out.println("최댓값 : "+max);
+		System.out.println("최솟값 : "+min);
 	}
 
 }

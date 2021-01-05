@@ -8,9 +8,9 @@ class Ex9_2 {
 		Person p2 = new Person(801108111122L);
 		
 		if(p1.equals(p2))
-			System.out.println("p1°ú p2´Â °°Àº »ç¶÷ÀÔ´Ï´Ù.");
+			System.out.println("p1ê³¼ p2ëŠ” ê°™ì€ ì‚¬ëŒì…ë‹ˆë‹¤.");
 		else
-			System.out.println("p1°ú p2´Â ´Ù¸¥ »ç¶÷ÀÔ´Ï´Ù.");
+			System.out.println("p1ê³¼ p2ëŠ” ë‹¤ë¥¸ ì‚¬ëŒì…ë‹ˆë‹¤.");
 	}
 
 }

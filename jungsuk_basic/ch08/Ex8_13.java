@@ -20,12 +20,12 @@ public class Ex8_13 {
 			copyFiles();
 		} catch (SpaceException2 e) {
 			// TODO: handle exception
-			InstallException ie = new InstallException("¼³Ä¡ Áß ¿¹¿Ü ¹ß»ı");
+			InstallException ie = new InstallException("ì„¤ì¹˜ ì¤‘ ì˜ˆì™¸ ë°œìƒ");
 			ie.initCause(e);
 			throw ie;
 		} catch (MemoryException2 e) {
 			// TODO: handle exception
-			InstallException ie = new InstallException("¼³Ä¡ Áß ¿¹¿Ü ¹ß»ı");
+			InstallException ie = new InstallException("ì„¤ì¹˜ ì¤‘ ì˜ˆì™¸ ë°œìƒ");
 			ie.initCause(e);
 			throw ie;
 		} finally {
@@ -35,10 +35,10 @@ public class Ex8_13 {
 	
 	static void startInstall() throws SpaceException2, MemoryException2 {
 		if(!enoughSpace()) {
-			throw new SpaceException2("¼³Ä¡ÇÒ °ø°£ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
+			throw new SpaceException2("ì„¤ì¹˜í•  ê³µê°„ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 		}
 		if(!enoughMemory()) {
-			throw new MemoryException2("¸Ş¸ğ¸®°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+			throw new MemoryException2("ë©”ëª¨ë¦¬ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 		}
 	}
 	

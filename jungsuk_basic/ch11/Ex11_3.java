@@ -12,12 +12,12 @@ class Ex11_3 {
 			System.out.println("Example:java Ex11_3 \"((2+3)*1)+3\"");
 			System.exit(0);
 		}
-		
+
 		Stack st = new Stack();
 		String expression = args[0];
-		
+
 		System.out.println("Expression: "+expression);
-		
+
 		try {
 			for(int i = 0; i < expression.length(); i++) {
 				char ch = expression.charAt(i);
@@ -27,14 +27,14 @@ class Ex11_3 {
 					st.pop();
 				}
 			}
-			
+
 			if(st.empty()) {
-				System.out.println("°ýÈ£°¡ ÀÏÄ¡ÇÕ´Ï´Ù.");
+				System.out.println("ê´„í˜¸ê°€ ì¼ì¹˜í•©ë‹ˆë‹¤.");
 			} else {
-				System.out.println("°ýÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+				System.out.println("ê´„í˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			}
 		} catch(EmptyStackException e) {
-			System.out.println("°ýÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("ê´„í˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 	}
 }

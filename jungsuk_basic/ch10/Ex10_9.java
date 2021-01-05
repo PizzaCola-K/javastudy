@@ -8,11 +8,11 @@ class Ex10_9 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DateFormat df = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ"); 
+		DateFormat df = new SimpleDateFormat("yyyyë…„ MMì›” ddì¼"); 
 		DateFormat df2 = new SimpleDateFormat("yyyy/MM/dd");
 		
 		try {
-			Date d= df.parse("2019³â 11¿ù 23ÀÏ");
+			Date d= df.parse("2019ë…„ 11ì›” 23ì¼");
 			System.out.println(df2.format(d));
 		} catch (Exception e) {
 			// TODO: handle exception

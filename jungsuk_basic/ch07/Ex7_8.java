@@ -7,8 +7,8 @@ class Ex7_8 {
 		Buyer b = new Buyer();
 		b.buy(new Tv1());
 		b.buy(new Computer());
-		System.out.println("ÇöÀç ³²Àº µ·Àº "+b.money+"¸¸¿ø ÀÔ´Ï´Ù.");
-		System.out.println("ÇöÀç º¸³Ê½ºÁ¡¼ö´Â "+b.bonusPoint+"Á¡ÀÔ´Ï´Ù.");
+		System.out.println("í˜„ì¬ ë‚¨ì€ ëˆì€ "+b.money+"ë§Œì› ì…ë‹ˆë‹¤.");
+		System.out.println("í˜„ì¬ ë³´ë„ˆìŠ¤ì ìˆ˜ëŠ” "+b.bonusPoint+"ì ì…ë‹ˆë‹¤.");
 	}
 
 }

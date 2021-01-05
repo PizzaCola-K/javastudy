@@ -11,21 +11,21 @@ class Exercise4_10 {
 		
 		do {
 			count++;
-			System.out.print("1°ú 100 »çÀÌÀÇ °ªÀ» ÀÔ·ÂÇÏ¼¼¿ä :");
+			System.out.print("1ê³¼ 100 ì‚¬ì´ì˜ ê°’ì„ ì…ë ¥í•˜ì„¸ìš” :");
 			input = s.nextInt();
 			
 			if(!(1<=input&&input<=100)) {
-				System.out.println("¹üÀ§ ¹Û ÀÔ·Â");
+				System.out.println("ë²”ìœ„ ë°– ì…ë ¥");
 				count--;
 				continue;
 			}
 			
 			if(answer > input) {
-				System.out.println("´õ Å« ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ë” í° ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			}else if (answer < input) {
-				System.out.println("´õ ÀÛÀº ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ë” ì‘ì€ ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			} else {
-				System.out.printf("¸ÂÇû½À´Ï´Ù.%n½ÃµµÈ½¼ö´Â %d¹øÀÔ´Ï´Ù.", count);
+				System.out.printf("ë§í˜”ìŠµë‹ˆë‹¤.%nì‹œë„íšŸìˆ˜ëŠ” %dë²ˆì…ë‹ˆë‹¤.", count);
 				break;
 			}
 			

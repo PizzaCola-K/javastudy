@@ -8,7 +8,7 @@ class Ex6_1 {
 		t = new Tv();
 		t.channel = 7;
 		t.channelDown();
-		System.out.println("ÇöÀç Ã¤³ÎÀº "+t.channel+" ÀÔ´Ï´Ù.");
+		System.out.println("í˜„ì¬ ì±„ë„ì€ "+t.channel+" ì…ë‹ˆë‹¤.");
 	}
 
 }

@@ -7,7 +7,7 @@ class Ex10_3 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		final int[] TIME_UNIT = {3600,60,1};
-		final String[] TIME_UNIT_NAME = {"½Ã°£ ", "ºÐ ", "ÃÊ "};
+		final String[] TIME_UNIT_NAME = {"ì‹œê°„ ", "ë¶„ ", "ì´ˆ "};
 		
 		Calendar time1 = Calendar.getInstance();
 		Calendar time2 = Calendar.getInstance();

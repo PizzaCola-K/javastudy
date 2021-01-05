@@ -3,25 +3,25 @@ package ch07;
 abstract class Unit {
 	int x, y;
 	abstract void move(int x, int y);
-	void stop() {/* ÇöÀç À§Ä¡¿¡ Á¤Áö*/}
+	void stop() {/* í˜„ì¬ ìœ„ì¹˜ì— ì •ì§€*/}
 }
 
 class Marine extends Unit {
 	void move(int x, int y) {
 		System.out.println("Marine[x="+x+",y="+y+"]");
 	}
-	void stimPack() {/*½ºÆÀÆÑ »ç¿ë*/}
+	void stimPack() {/*ìŠ¤íŒ€íŒ© ì‚¬ìš©*/}
 }
 class Tank extends Unit {
 	void move(int x, int y) {
 		System.out.println("Tank[x="+x+",y="+y+"]");
 	}	
-	void changeMode() {/*°ø°İ¸ğµå º¯È¯*/}
+	void changeMode() {/*ê³µê²©ëª¨ë“œ ë³€í™˜*/}
 }
 class Dropship extends Unit {
 	void move(int x, int y) {
 		System.out.println("Dropship[x="+x+",y="+y+"]");
 	}
-	void load() {/*¼±ÅÃµÈ ´ë»óÀ» ÅÂ¿î´Ù.*/}
-	void unload() {/*¼±ÅÃµÈ ´ë»óÀ» ³»¸°´Ù.*/}
+	void load() {/*ì„ íƒëœ ëŒ€ìƒì„ íƒœìš´ë‹¤.*/}
+	void unload() {/*ì„ íƒëœ ëŒ€ìƒì„ ë‚´ë¦°ë‹¤.*/}
 }

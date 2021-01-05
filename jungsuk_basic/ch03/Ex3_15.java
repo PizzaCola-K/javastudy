@@ -9,16 +9,16 @@ class Ex3_15 {
 		Scanner scanner = new Scanner(System.in);
 		char ch;
 		
-		System.out.printf("¹®ÀÚ ÇÏ³ª¸¦ ÀÔ·ÂÇÏ¼¼¿ä.>");
+		System.out.printf("ë¬¸ìž í•˜ë‚˜ë¥¼ ìž…ë ¥í•˜ì„¸ìš”.>");
 		
 		String input = scanner.nextLine();
 		ch = input.charAt(0);
 		if('0' <= ch && ch <= '9') {
-			System.out.printf("ÀÔ·ÂÇÏ½Å ¹®ÀÚ´Â ¼ýÀÚÀÔ´Ï´Ù.%n");
+			System.out.printf("ìž…ë ¥í•˜ì‹  ë¬¸ìžëŠ” ìˆ«ìžìž…ë‹ˆë‹¤.%n");
 		}
 		
 		if('a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z') {
-			System.out.printf("ÀÔ·ÂÇÏ½Å ¹®ÀÚ´Â ¿µ¹®ÀÚÀÔ´Ï´Ù.%n");
+			System.out.printf("ìž…ë ¥í•˜ì‹  ë¬¸ìžëŠ” ì˜ë¬¸ìžìž…ë‹ˆë‹¤.%n");
 		}
 		scanner.close();
 	}

@@ -13,10 +13,10 @@ class Exercise6_18 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String str = "123";
-		System.out.println(str + "´Â ¼ıÀÚÀÔ´Ï±î? " + isNumber(str));
+		System.out.println(str + "ëŠ” ìˆ«ìì…ë‹ˆê¹Œ? " + isNumber(str));
 		
 		str = "1234o";
-		System.out.println(str + "´Â ¼ıÀÚÀÔ´Ï±î? " + isNumber(str));
+		System.out.println(str + "ëŠ” ìˆ«ìì…ë‹ˆê¹Œ? " + isNumber(str));
 	}
 
 }

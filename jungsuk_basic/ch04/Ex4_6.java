@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 class Ex4_6 {
 	public static void main(String[] args) {
-		System.out.print("ÇöÀç ¿ùÀ» ÀÔ·ÂÇÏ¼¼¿ä.>");
+		System.out.print("í˜„ì¬ ì›”ì„ ì…ë ¥í•˜ì„¸ìš”.>");
 		
 		Scanner scanner = new Scanner(System.in);
 		int month = scanner.nextInt();
@@ -13,16 +13,16 @@ class Ex4_6 {
 		case 3:
 		case 4:
 		case 5:
-			System.out.println("ÇöÀçÀÇ °èÀıÀº º½ÀÔ´Ï´Ù.");
+			System.out.println("í˜„ì¬ì˜ ê³„ì ˆì€ ë´„ì…ë‹ˆë‹¤.");
 			break;
 		case 6:case 7:case 8:
-			System.out.println("ÇöÀçÀÇ °èÀıÀº ¿©¸§ÀÔ´Ï´Ù.");
+			System.out.println("í˜„ì¬ì˜ ê³„ì ˆì€ ì—¬ë¦„ì…ë‹ˆë‹¤.");
 			break;
 		case 9:case 10:case 11:
-			System.out.println("ÇöÀçÀÇ °èÀıÀº °¡À»ÀÔ´Ï´Ù.");
+			System.out.println("í˜„ì¬ì˜ ê³„ì ˆì€ ê°€ì„ì…ë‹ˆë‹¤.");
 			break;
 		default:
-			System.out.println("ÇöÀçÀÇ °èÀıÀº °Ü¿ïÀÔ´Ï´Ù.");
+			System.out.println("í˜„ì¬ì˜ ê³„ì ˆì€ ê²¨ìš¸ì…ë‹ˆë‹¤.");
 			break;
 		}
 		

@@ -8,7 +8,7 @@ class Ex6_14 {
 		System.out.println("{ }");
 	}
 	public Ex6_14() {
-		System.out.println("»ı¼ºÀÚ");
+		System.out.println("ìƒì„±ì");
 	}
 	
 	public static void main(String[] args) {

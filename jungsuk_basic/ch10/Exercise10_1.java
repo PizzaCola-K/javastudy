@@ -21,7 +21,7 @@ class Exercise10_1 {
 			cal.set(Calendar.DAY_OF_WEEK_IN_MONTH, 2);
 			d.setTime(cal.getTimeInMillis());
 			
-			System.out.println(df.format(d)+"Àº "+cal.get(Calendar.DAY_OF_WEEK_IN_MONTH)+"¹øÂ° ÀÏ¿äÀÏÀÔ´Ï´Ù.");
+			System.out.println(df.format(d)+"ì€ "+cal.get(Calendar.DAY_OF_WEEK_IN_MONTH)+"ë²ˆì§¸ ì¼ìš”ì¼ì…ë‹ˆë‹¤.");
 		} while(i < 12);
 		
 		

@@ -5,15 +5,15 @@ class Ex8_6 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			Exception e = new Exception("°íÀÇ·Î ¹ß»ı½ÃÄ×À½");
+			Exception e = new Exception("ê³ ì˜ë¡œ ë°œìƒì‹œì¼°ìŒ");
 			throw e;
-			// throw new Exception("°íÀÇ·Î ¹ß»ı½ÃÄ×À½");
+			// throw new Exception("ê³ ì˜ë¡œ ë°œìƒì‹œì¼°ìŒ");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("¿¡·¯ ¸Ş½ÃÁö : "+e.getMessage());
+			System.out.println("ì—ëŸ¬ ë©”ì‹œì§€ : "+e.getMessage());
 			e.printStackTrace();
 		}
-		System.out.println("ÇÁ·Î±×·¥ÀÌ Á¤»ó Á¾·áµÇ¾úÀ½.");
+		System.out.println("í”„ë¡œê·¸ë¨ì´ ì •ìƒ ì¢…ë£Œë˜ì—ˆìŒ.");
 	}
 
 }

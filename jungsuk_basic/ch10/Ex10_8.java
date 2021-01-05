@@ -12,15 +12,15 @@ class Ex10_8 {
 		SimpleDateFormat[] sdf = new SimpleDateFormat[9];
 		
 		sdf[0] = new SimpleDateFormat("yyyy-MM-dd");
-		sdf[1] = new SimpleDateFormat("''yy³â MMM ddÀÏ E¿äÀÏ");
+		sdf[1] = new SimpleDateFormat("''yyë…„ MMM ddì¼ Eìš”ì¼");
 		sdf[2] = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		sdf[3] = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
 		
-		sdf[4] = new SimpleDateFormat("¿À´ÃÀº ¿Ã ÇØÀÇ D¹øÂ° ³¯ÀÔ´Ï´Ù.");
-		sdf[5] = new SimpleDateFormat("¿À´ÃÀº ÀÌ ´ŞÀÇ d¹øÂ° ³¯ÀÔ´Ï´Ù.");
-		sdf[6] = new SimpleDateFormat("¿À´ÃÀº ¿Ã ÇØÀÇ w¹øÂ° ÁÖÀÔ´Ï´Ù.");
-		sdf[7] = new SimpleDateFormat("¿À´ÃÀº ÀÌ ´ŞÀÇ W¹øÂ° ÁÖÀÔ´Ï´Ù.");
-		sdf[8] = new SimpleDateFormat("¿À´ÃÀº ÀÌ ´ŞÀÇ F¹øÂ° E¿äÀÏÀÔ´Ï´Ù.");
+		sdf[4] = new SimpleDateFormat("ì˜¤ëŠ˜ì€ ì˜¬ í•´ì˜ Dë²ˆì§¸ ë‚ ì…ë‹ˆë‹¤.");
+		sdf[5] = new SimpleDateFormat("ì˜¤ëŠ˜ì€ ì´ ë‹¬ì˜ dë²ˆì§¸ ë‚ ì…ë‹ˆë‹¤.");
+		sdf[6] = new SimpleDateFormat("ì˜¤ëŠ˜ì€ ì˜¬ í•´ì˜ wë²ˆì§¸ ì£¼ì…ë‹ˆë‹¤.");
+		sdf[7] = new SimpleDateFormat("ì˜¤ëŠ˜ì€ ì´ ë‹¬ì˜ Wë²ˆì§¸ ì£¼ì…ë‹ˆë‹¤.");
+		sdf[8] = new SimpleDateFormat("ì˜¤ëŠ˜ì€ ì´ ë‹¬ì˜ Fë²ˆì§¸ Eìš”ì¼ì…ë‹ˆë‹¤.");
 		
 		for(int i = 0 ; i < sdf.length;i++) {
 			System.out.println(sdf[i].format(today));

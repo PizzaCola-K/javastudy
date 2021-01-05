@@ -18,13 +18,13 @@ class Exercise5_6 {
 				question[0] = question[idx];
 				question[idx] = tmp;
 			}
-			System.out.printf("Q%d. %sÀÇ Á¤´äÀ» ÀÔ·ÂÇÏ¼¼¿ä.>", i+1, new String(question));
+			System.out.printf("Q%d. %sì˜ ì •ë‹µì„ ìž…ë ¥í•˜ì„¸ìš”.>", i+1, new String(question));
 			String answer = scanner.nextLine();
 			
 			if(words[i].equals(answer.trim())) {
-				System.out.printf("¸Â¾Ò½À´Ï´Ù.%n%n");
+				System.out.printf("ë§žì•˜ìŠµë‹ˆë‹¤.%n%n");
 			} else {
-				System.out.printf("Æ²·È½À´Ï´Ù.%n%n");
+				System.out.printf("í‹€ë ¸ìŠµë‹ˆë‹¤.%n%n");
 			}
 		}
 		scanner.close();

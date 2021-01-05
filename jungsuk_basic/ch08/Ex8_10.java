@@ -8,15 +8,15 @@ class Ex8_10 {
 		// TODO Auto-generated method stub
 		try {
 			File f = createFile(args[0]);
-			System.out.println(f.getName()+"ÆÄÀÏÀÌ ¼º°øÀûÀ¸·Î »ı¼ºµÇ¾ú½À´Ï´Ù.");
+			System.out.println(f.getName()+"íŒŒì¼ì´ ì„±ê³µì ìœ¼ë¡œ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e.getMessage()+" ´Ù½Ã ÀÔ·ÂÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
+			System.out.println(e.getMessage()+" ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 		}
 	}
 	static File createFile(String fileName) throws Exception {
 		if(fileName == null || fileName.equals(""))
-			throw new Exception("ÆÄÀÏ ÀÌ¸§ÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.");
+			throw new Exception("íŒŒì¼ ì´ë¦„ì´ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		File f = new File(fileName);
 		f.createNewFile();
 		return f;

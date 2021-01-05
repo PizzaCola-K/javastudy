@@ -10,25 +10,25 @@ class Ex10_4 {
 		date.set(2019, 7, 31);
 		
 		System.out.println(toString(date));
-		System.out.println("= 1ÀÏ ÈÄ =");
+		System.out.println("= 1ì¼ í›„ =");
 		date.add(Calendar.DATE, 1);
 		System.out.println(toString(date));
 		
-		System.out.println("= 6´Ş Àü =");
+		System.out.println("= 6ë‹¬ ì „ =");
 		date.add(Calendar.MONTH, -6);
 		System.out.println(toString(date));
 		
-		System.out.println("= 31ÀÏ ÈÄ roll =");
+		System.out.println("= 31ì¼ í›„ roll =");
 		date.roll(Calendar.DATE, 31);
 		System.out.println(toString(date));
 		
-		System.out.println("= 31ÀÏ ÈÄ add =");
+		System.out.println("= 31ì¼ í›„ add =");
 		date.add(Calendar.DATE, 31);
 		System.out.println(toString(date));
 	}
 	
 	
 	public static String toString(Calendar date) {
-		return date.get(Calendar.YEAR)+"³â "+(date.get(Calendar.MONTH)+1)+"¿ù "+date.get(Calendar.DATE)+"ÀÏ ";
+		return date.get(Calendar.YEAR)+"ë…„ "+(date.get(Calendar.MONTH)+1)+"ì›” "+date.get(Calendar.DATE)+"ì¼ ";
 	}
 }

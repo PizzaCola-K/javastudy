@@ -13,20 +13,20 @@ class Ex4_18 {
 			System.out.println("(1) square");
 			System.out.println("(2) square root");
 			System.out.println("(3) log");
-			System.out.print("¿øÇÏ´Â ¸Ş´º(1~3)¸¦ ¼±ÅÃÇÏ¼¼¿ä.(Á¾·á:0)>");
+			System.out.print("ì›í•˜ëŠ” ë©”ë‰´(1~3)ë¥¼ ì„ íƒí•˜ì„¸ìš”.(ì¢…ë£Œ:0)>");
 			
 			String tmp = scanner.nextLine();
 			menu = Integer.parseInt(tmp);
 			
 			if(menu == 0) {
-				System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
+				System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 				break;
 			}
 			else if (!(1<=menu && menu <=3)) {
-				System.out.println("¸Ş´º¸¦ Àß ¸ø ¼±ÅÃÇÏ¿´½À´Ï´Ù.(Á¾·á´Â 0)");
+				System.out.println("ë©”ë‰´ë¥¼ ì˜ ëª» ì„ íƒí•˜ì˜€ìŠµë‹ˆë‹¤.(ì¢…ë£ŒëŠ” 0)");
 				continue;
 			}
-			System.out.printf("¼±ÅÃÇÏ½Å ¸Ş´º´Â %d¹ø ÀÔ´Ï´Ù.%n", menu);
+			System.out.printf("ì„ íƒí•˜ì‹  ë©”ë‰´ëŠ” %dë²ˆ ì…ë‹ˆë‹¤.%n", menu);
 		}
 		scanner.close();
 	}

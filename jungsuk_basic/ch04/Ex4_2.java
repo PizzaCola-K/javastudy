@@ -3,7 +3,7 @@ package ch04;
 class Ex4_2 {
 	public static void main(String[] args) {
 		int x = 0;
-		System.out.printf("x=%d ÀÏ ¶§, ÂüÀÎ °ÍÀº%n", x);
+		System.out.printf("x=%d ì¼ ë•Œ, ì°¸ì¸ ê²ƒì€%n", x);
 		
 		if(x==0) System.out.println("x==0");
 		if(x!=0) System.out.println("x!=0");
@@ -11,7 +11,7 @@ class Ex4_2 {
 		if(!(x!=0)) System.out.println("!(x!=0)");
 		
 		x = 1;
-		System.out.printf("x=%d ÀÏ ¶§, ÂüÀÎ °ÍÀº%n", x);
+		System.out.printf("x=%d ì¼ ë•Œ, ì°¸ì¸ ê²ƒì€%n", x);
 		
 		if(x==0) System.out.println("x==0");
 		if(x!=0) System.out.println("x!=0");

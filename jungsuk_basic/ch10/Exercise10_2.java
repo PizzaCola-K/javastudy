@@ -9,10 +9,10 @@ class Exercise10_2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final String[] DAY_OF_WEEK_KOR = {"","ÀÏ","¿ù","È­","¼ö","¸ñ","±İ","Åä"};
+		final String[] DAY_OF_WEEK_KOR = {"","ì¼","ì›”","í™”","ìˆ˜","ëª©","ê¸ˆ","í† "};
 		Scanner s = new Scanner(System.in);
 		
-		System.out.println("³¯Â¥¸¦ yyyy/MM/ddÀÇ ÇüÅÂ·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.(ÀÔ·Â¿¹:2021/01/01)");
+		System.out.println("ë‚ ì§œë¥¼ yyyy/MM/ddì˜ í˜•íƒœë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.(ì…ë ¥ì˜ˆ:2021/01/01)");
 		System.out.print(">>");
 		
 		Date inputDate = null;
@@ -23,14 +23,14 @@ class Exercise10_2 {
 				inputDate = df.parse(s.nextLine());
 				break;
 			} catch (Exception e) {
-				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. yyyy/MM/dd ÇüÅÂ·Î ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. yyyy/MM/dd í˜•íƒœë¡œ ì…ë ¥í•˜ì„¸ìš”.");
 			}
 		}
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(inputDate);
 		
-		System.out.println("ÀÔ·ÂÇÏ½Å ³¯Â¥´Â "+DAY_OF_WEEK_KOR[cal.get(Calendar.DAY_OF_WEEK)]+"¿äÀÏ ÀÔ´Ï´Ù.");
+		System.out.println("ì…ë ¥í•˜ì‹  ë‚ ì§œëŠ” "+DAY_OF_WEEK_KOR[cal.get(Calendar.DAY_OF_WEEK)]+"ìš”ì¼ ì…ë‹ˆë‹¤.");
 		
 		s.close();
 	}

@@ -7,7 +7,7 @@ class Ex8_12 {
 		try {
 			method1();
 		} catch (Exception e) {
-			System.out.println("main ¸Ş¼­µå¿¡¼­ ¿¹¿Ü°¡ Ã³¸®µÇ¾ú½À´Ï´Ù.");
+			System.out.println("main ë©”ì„œë“œì—ì„œ ì˜ˆì™¸ê°€ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}
 	}
 	static void method1() throws Exception {
@@ -15,7 +15,7 @@ class Ex8_12 {
 			throw new Exception();
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("method1 ¸Ş¼­µå¿¡¼­ ¿¹¿Ü°¡ Ã³¸®µÇ¾ú½À´Ï´Ù.");
+			System.out.println("method1 ë©”ì„œë“œì—ì„œ ì˜ˆì™¸ê°€ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			throw e;
 		}
 	}

@@ -5,7 +5,7 @@ class Exercise3_5 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int num = 10;
-		System.out.println(num>0?"¾ç¼ö":num==0?"0":"À½¼ö");
+		System.out.println(num>0?"ì–‘ìˆ˜":num==0?"0":"ìŒìˆ˜");
 	}
 
 }

@@ -14,7 +14,7 @@ class Ex8_5 {
 		} catch (ArithmeticException ae) {
 			// TODO: handle exception
 			ae.printStackTrace();
-			System.out.println("¿¹¿Ü¸Þ½ÃÁö : "+ae.getMessage());
+			System.out.println("ì˜ˆì™¸ë©”ì‹œì§€ : "+ae.getMessage());
 		}
 		System.out.println(6);
 	}

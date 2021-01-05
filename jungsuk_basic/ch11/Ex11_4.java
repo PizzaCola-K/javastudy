@@ -10,27 +10,27 @@ class Ex11_4 {
 	static final int MAX_SIZE = 5;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("help¸¦ ÀÔ·ÂÇÏ¸é µµ¿ò¸»À» º¼ ¼ö ÀÖ½À´Ï´Ù.");
-		
+		System.out.println("helpë¥¼ ìž…ë ¥í•˜ë©´ ë„ì›€ë§ì„ ë³¼ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.");
+
 		while(true) {
 			System.out.print(">>");
 			try {
 				Scanner s = new Scanner(System.in);
 				String input  = s.nextLine().trim();
-				
+
 				if("".equals(input)) continue;
 				if(input.equalsIgnoreCase("q")) {
 					System.exit(0);
 				} else if(input.equalsIgnoreCase("help")) {
-					System.out.println(" help - µµ¿ò¸»");
-					System.out.println(" q ¶Ç´Â Q - ÇÁ·Î±×·¥ Á¾·á");
-					System.out.println(" history - ÃÖ±Ù¿¡ ÀÔ·ÂÇÑ ¸í·É¾î "+MAX_SIZE+"°³¸¦ º¸¿©ÁÝ´Ï´Ù.");
+					System.out.println(" help - ë„ì›€ë§");
+					System.out.println(" q ë˜ëŠ” Q - í”„ë¡œê·¸ëž¨ ì¢…ë£Œ");
+					System.out.println(" history - ìµœê·¼ì— ìž…ë ¥í•œ ëª…ë ¹ì–´ "+MAX_SIZE+"ê°œë¥¼ ë³´ì—¬ì¤ë‹ˆë‹¤.");
 				} else if(input.equalsIgnoreCase("history")) {
 					int i = 0;
 					save(input);
 					LinkedList tmp = (LinkedList) q;
 					ListIterator it = tmp.listIterator();
-					
+
 					while(it.hasNext()) {
 						System.out.println(++i+"."+it.next());
 					}
@@ -39,7 +39,7 @@ class Ex11_4 {
 					System.out.println(input);
 				}
 			} catch(Exception e) {
-				System.out.println("ÀÔ·Â ¿À·ùÀÔ´Ï´Ù.");
+				System.out.println("ìž…ë ¥ ì˜¤ë¥˜ìž…ë‹ˆë‹¤.");
 			}
 		}
 	}
@@ -47,7 +47,7 @@ class Ex11_4 {
 		if(!"".equals(input)) {
 			q.offer(input);
 		}
-		
+
 		if(q.size() > MAX_SIZE) {
 			q.remove();
 		}

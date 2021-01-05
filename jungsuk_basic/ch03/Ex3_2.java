@@ -6,12 +6,12 @@ class Ex3_2 {
 		// TODO Auto-generated method stub
 		int i = 5, j = 0;
 		j = i++;
-		System.out.println("j=i++; ½ÇÇà ÈÄ, i="+i+", j="+j);
+		System.out.println("j=i++; ì‹¤í–‰ í›„, i="+i+", j="+j);
 		
 		i = 5;
 		j =0;
 		j = ++i;
-		System.out.println("j=++i; ½ÇÇà ÈÄ, i="+i+", j="+j);
+		System.out.println("j=++i; ì‹¤í–‰ í›„, i="+i+", j="+j);
 	}
 
 }

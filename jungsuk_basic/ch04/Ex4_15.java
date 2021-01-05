@@ -12,15 +12,15 @@ class Ex4_15 {
 		Scanner scanner = new Scanner(System.in);
 		
 		do {
-			System.out.print("1°ú 100 »çÀÌÀÇ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.>");
+			System.out.print("1ê³¼ 100 ì‚¬ì´ì˜ ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.>");
 			input = scanner.nextInt();
 			if (answer < input) {
-				System.out.println("´õ ÀÛÀº °ªÀ¸·Î ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.");
+				System.out.println("ë” ì‘ì€ ê°’ìœ¼ë¡œ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.");
 			} else if(answer > input) {
-				System.out.println("´õ Å« °ªÀ¸·Î ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.");
+				System.out.println("ë” í° ê°’ìœ¼ë¡œ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.");
 			}
 		} while(input != answer);
-		System.out.println("Á¤´äÀÔ´Ï´Ù.");
+		System.out.println("ì •ë‹µì…ë‹ˆë‹¤.");
 		scanner.close();
 	}
 

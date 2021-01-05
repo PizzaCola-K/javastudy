@@ -7,9 +7,9 @@ class Exercise6_21 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int value = 5;
-		System.out.println(value+"ÀÇ Àı´ñ°ª:"+abs(value));
+		System.out.println(value+"ì˜ ì ˆëŒ“ê°’:"+abs(value));
 		value = -10;
-		System.out.println(value+"ÀÇ Àı´ñ°ª:"+abs(value));
+		System.out.println(value+"ì˜ ì ˆëŒ“ê°’:"+abs(value));
 	}
 
 }

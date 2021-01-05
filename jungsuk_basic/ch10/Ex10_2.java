@@ -6,20 +6,20 @@ class Ex10_2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final String[] DAY_OF_WEEK = {"","ÀÏ","¿ù","È­","¼ö","¸ñ","±İ","Åä"};
+		final String[] DAY_OF_WEEK = {"","ì¼","ì›”","í™”","ìˆ˜","ëª©","ê¸ˆ","í† "};
 		
 		Calendar date1 = Calendar.getInstance();
 		Calendar date2 = Calendar.getInstance();
 		
 		date1.set(2019, 3, 29);
-		System.out.println("date1 : "+toString(date1)+DAY_OF_WEEK[date1.get(Calendar.DAY_OF_WEEK)]+"¿äÀÏ");
-		System.out.println("¿À´Ã(date2) : "+toString(date2)+DAY_OF_WEEK[date2.get(Calendar.DAY_OF_WEEK)]+"¿äÀÏ");
+		System.out.println("date1 : "+toString(date1)+DAY_OF_WEEK[date1.get(Calendar.DAY_OF_WEEK)]+"ìš”ì¼");
+		System.out.println("ì˜¤ëŠ˜(date2) : "+toString(date2)+DAY_OF_WEEK[date2.get(Calendar.DAY_OF_WEEK)]+"ìš”ì¼");
 		
 		long difference = (date2.getTimeInMillis() - date1.getTimeInMillis())/1000;
-		System.out.println("diff : "+difference+"ÃÊ");
-		System.out.println("diff(ÀÏ) : "+difference/(24*60*60)+"ÀÏ");
+		System.out.println("diff : "+difference+"ì´ˆ");
+		System.out.println("diff(ì¼) : "+difference/(24*60*60)+"ì¼");
 	}
 	public static String toString(Calendar date) {
-		return date.get(Calendar.YEAR)+"³â "+(date.get(Calendar.MONTH)+1)+"¿ù "+date.get(Calendar.DATE)+"ÀÏ ";
+		return date.get(Calendar.YEAR)+"ë…„ "+(date.get(Calendar.MONTH)+1)+"ì›” "+date.get(Calendar.DATE)+"ì¼ ";
 	}
 }
