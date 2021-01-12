@@ -6,6 +6,10 @@ import java.util.Scanner;
 public class Cinema {
     private int rows;
     private int seats;
+    private int numOfTickets;
+    private int totalSeats;
+    private int currentIncome;
+    private int totalIncome;
     private boolean[][] seatsState;
 
     Cinema(int rows, int seats) {
@@ -15,7 +19,18 @@ public class Cinema {
         for (boolean[] row: seatsState) {
             Arrays.fill(row, false);
         }
+        this.totalSeats = rows * seats;
+        if (totalSeats <= 60) {
+            totalIncome = totalSeats * 10;
+        } else {
+            totalIncome = ((rows / 2) * 10 + (rows - rows / 2) * 8) * seats;
+        }
+        this.currentIncome = 0;
+        this.numOfTickets = 0;
     }
+
+    public int getRows() { return rows; }
+    public int getSeats() { return seats; }
 
     public void showCinema() {
         System.out.println("Cinema:");
@@ -38,20 +53,18 @@ public class Cinema {
     }
 
     public boolean buyTicket(int row, int col) {
-        try {
-            if (seatsState[row - 1][col - 1]) {
-                return false;
-            } else {
-                seatsState[row - 1][col - 1] = true;
-                return true;
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        if (seatsState[row - 1][col - 1]) {
             return false;
+        } else {
+            seatsState[row - 1][col - 1] = true;
+            int ticketPrice = getTicketPrice(row);
+            currentIncome += ticketPrice;
+            numOfTickets++;
+            return true;
         }
     }
 
     public int getTicketPrice(int row) {
-        int totalSeats = this.rows * this.seats;
         if (totalSeats <= 60) {
             return 10;
         } else {
@@ -61,6 +74,13 @@ public class Cinema {
                 return 8;
             }
         }
+    }
+
+    public void showStatistics() {
+        System.out.printf("Number of purchased tickets: %d%n", numOfTickets);
+        System.out.printf("Percentage: %.2f%%%n", numOfTickets * 100 / (double) totalSeats);
+        System.out.printf("Current income: $%d%n", currentIncome);
+        System.out.printf("Total income: $%d%n", totalIncome);
     }
 
     public static void main(String[] args) {
@@ -73,11 +93,13 @@ public class Cinema {
 
         Cinema cinema = new Cinema(rows, seats);
 
+        boolean isExit = false;
         cli:
-        while (true) {
+        while (!isExit) {
             System.out.println();
             System.out.println("1. Show the seats");
             System.out.println("2. Buy a ticket");
+            System.out.println("3. Statistics");
             System.out.println("0. Exit");
 
             int input = scanner.nextInt();
@@ -85,22 +107,35 @@ public class Cinema {
             System.out.println();
             switch (input) {
                 case 0:
-                    break cli;
+                    isExit = true;
+                    break;
                 case 1:
                     cinema.showCinema();
                     break;
                 case 2:
-                    System.out.println("Enter a row number:");
-                    int row = scanner.nextInt();
-                    System.out.println("Enter a seat number in that row:");
-                    int col = scanner.nextInt();
-                    cinema.buyTicket(row, col);
-                    System.out.printf("Ticket price: $%d%n", cinema.getTicketPrice(row));
-
+                    buy:
+                    while (true) {
+                        System.out.println("Enter a row number:");
+                        int row = scanner.nextInt();
+                        System.out.println("Enter a seat number in that row:");
+                        int col = scanner.nextInt();
+                        if (1 <= row && row <= cinema.getRows() && 1 <= col && col <= cinema.getSeats()) {
+                            if (cinema.buyTicket(row, col)) {
+                                System.out.printf("%nTicket price: $%d%n", cinema.getTicketPrice(row));
+                                break;
+                            } else {
+                                System.out.printf("%nThat ticket has already been purchased!%n%n");
+                                continue buy;
+                            }
+                        } else {
+                            System.out.printf("%nWrong input!%n%n");
+                            continue buy;
+                        }
+                    }
+                    break;
+                case 3:
+                    cinema.showStatistics();
             }
         }
     }
-
-
-
 }
