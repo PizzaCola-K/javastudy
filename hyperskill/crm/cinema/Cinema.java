@@ -1,17 +1,26 @@
 package crm.cinema;
 
-public class Cinema {
-    public static void main(String[] args) {
-        System.out.println("Cinema:");
-        System.out.println("  1 2 3 4 5 6 7 8");
-        System.out.println("1 S S S S S S S S");
-        System.out.println("2 S S S S S S S S");
-        System.out.println("3 S S S S S S S S");
-        System.out.println("4 S S S S S S S S");
-        System.out.println("5 S S S S S S S S");
-        System.out.println("6 S S S S S S S S");
-        System.out.println("7 S S S S S S S S");
-    }
-    // Write your code here
+import java.util.Scanner;
 
+public class Cinema {
+
+    public static void main(String[] args) {
+        // Write your code here
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the number of rows:");
+        int rows = scanner.nextInt();
+        System.out.println("Enter the number of seats in each row:");
+        int seats = scanner.nextInt();
+
+        int totalSeats = rows * seats;
+
+        int incomes = 0;
+        if (totalSeats <= 60) {
+            incomes = totalSeats * 10;
+        } else {
+            incomes = ((rows / 2) * 10 + (rows - rows / 2) * 8) * seats;
+        }
+        System.out.println("Total income:");
+        System.out.println("$"+incomes);
+    }
 }
