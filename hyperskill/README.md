@@ -9,3 +9,7 @@
 ## Cinema Room Manager
 
 [Links](https://hyperskill.org/projects/133?track=1)
+
+## Tic-Tac-Toe
+
+[Links](https://hyperskill.org/projects/48?track=1)
