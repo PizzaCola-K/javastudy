@@ -20,8 +20,12 @@ public class Main {
         this.board = board;
     }
 
-    public void setBoard(char[] board) {
-        this.board = board;
+    public char getBoard(int idx) {
+        return board[idx];
+    }
+
+    public void setBoard(int idx, char c) {
+        this.board[idx] = c;
     }
 
     public void analyzeState() {
@@ -72,6 +76,7 @@ public class Main {
         return winner;
     }
 
+
     public void showBoard() {
         System.out.println("---------");
         System.out.println("| " + board[0] + " " + board[1] + " " + board[2] + " |");
@@ -91,6 +96,41 @@ public class Main {
         Main TicTacToe = new Main(chars);
 
         TicTacToe.showBoard();
-        TicTacToe.analyzeState();
+        boolean end = false;
+        while (!end) {
+            System.out.print("Enter the coordinates: ");
+            input = scanner.nextLine();
+            String[] inputs = input.split(" +");
+
+            int row;
+            int col;
+            try {
+                row = Integer.parseInt(inputs[0]);
+                col = Integer.parseInt(inputs[1]);
+            } catch (Exception e) {
+                System.out.println("You should enter numbers!");
+                continue;
+            }
+            if (row < 1 || row > 3 || col < 1 || col > 3) {
+                System.out.println("Coordinates should be from 1 to 3!");
+                continue;
+            }
+
+            row -= 1;
+            col -= 1;
+
+            int idx = row * 3 + col;
+            if (TicTacToe.getBoard(idx) != '_') {
+                System.out.println("This cell is occupied! Choose another one!");
+                continue;
+            } else {
+                TicTacToe.setBoard(idx, 'X');
+                end = true;
+            }
+
+
+        }
+        TicTacToe.showBoard();
+        //TicTacToe.analyzeState();
     }
 }
