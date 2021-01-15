@@ -1,5 +1,9 @@
 package coffeemachine.machine;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class CoffeeMachine {
@@ -33,18 +37,29 @@ public class CoffeeMachine {
         this.beans = beans;
     }
 
-    public void buy(Coffee coffee) {
+    public boolean buy(Coffee coffee) {
         int requiredWater = coffee.getWater();
         int requiredMilk = coffee.getMilk();
         int requiredBeans = coffee.getBeans();
 
-        if (this.water > requiredWater && this.milk > requiredMilk && this.beans > requiredBeans) {
+        if (this.water < requiredWater) {
+            System.out.println("Sorry, not enough water!");
+        } else if (this.milk < requiredMilk) {
+            System.out.println("Sorry, not enough milk!");
+        } else if (this.beans < requiredBeans) {
+            System.out.println("Sorry, not enough beans!");
+        } else if (this.cups <= 0) {
+            System.out.println("Sorry, not enough disposable cups!");
+        } else {
             this.water -= requiredWater;
             this.milk -= requiredMilk;
             this.beans -= requiredBeans;
             this.cups -= 1;
             this.money += coffee.getCost();
+            System.out.println("I have enough resources, making you a coffee!");
+            return true;
         }
+        return false;
     }
 
     public void fill(int water, int milk, int beans, int cups) {
@@ -60,7 +75,7 @@ public class CoffeeMachine {
     }
 
     public void show() {
-        System.out.println("The coffee machine has:");
+        System.out.printf("%nThe coffee machine has:%n");
         System.out.printf("%d of water%n", this.water);
         System.out.printf("%d of milk%n", this.milk);
         System.out.printf("%d of coffee beans%n", this.beans);
@@ -95,51 +110,61 @@ public class CoffeeMachine {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         CoffeeMachine coffeeMachine = new CoffeeMachine();
 
-        coffeeMachine.show();
-        System.out.printf("%nWrite action (buy, fill, take):%n");
-        String action = scanner.next();
+        // coffeeMachine.show();
 
-        switch (action) {
-            case "buy":
-                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
-                int input = scanner.nextInt();
-                switch (input) {
-                    case 1:
-                        coffeeMachine.buy(Coffee.ESPRESSO);
-                        break;
-                    case 2:
-                        coffeeMachine.buy(Coffee.LATTE);
-                        break;
-                    case 3:
-                        coffeeMachine.buy(Coffee.CAPPUCCINO);
-                        break;
-                    default:
-                }
-                break;
-            case "fill":
-                System.out.println("Write how many ml of water do you want to add:");
-                int water = scanner.nextInt();
-                System.out.println("Write how many ml of milk do you want to add:");
-                int milk = scanner.nextInt();
-                System.out.println("Write how many grams of coffee beans do you want to add:");
-                int beans = scanner.nextInt();
-                System.out.println("Write how many disposable cups of coffee do you want to add:");
-                int cups = scanner.nextInt();
-                coffeeMachine.fill(water, milk, beans, cups);
-                break;
-            case "take":
-                System.out.printf("I gave you $%d", coffeeMachine.take());
-                break;
-            default:
+        boolean exit = false;
+        while (!exit) {
+            System.out.printf("Write action (buy, fill, take, remaining, exit):%n");
+            String action = scanner.next();
+            switch (action) {
+                case "buy":
+                    System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: :");
+                    action = scanner.next();
+                    if (action.equals("back")) {
+                        continue;
+                    }
+                    int input = Integer.parseInt(action);
+                    switch (input) {
+                        case 1:
+                            coffeeMachine.buy(Coffee.ESPRESSO);
+                            break;
+                        case 2:
+                            coffeeMachine.buy(Coffee.LATTE);
+                            break;
+                        case 3:
+                            coffeeMachine.buy(Coffee.CAPPUCCINO);
+                            break;
+                        default:
+                    }
+                    break;
+                case "fill":
+                    System.out.println("Write how many ml of water do you want to add:");
+                    int water = scanner.nextInt();
+                    System.out.println("Write how many ml of milk do you want to add:");
+                    int milk = scanner.nextInt();
+                    System.out.println("Write how many grams of coffee beans do you want to add:");
+                    int beans = scanner.nextInt();
+                    System.out.println("Write how many disposable cups of coffee do you want to add:");
+                    int cups = scanner.nextInt();
+                    coffeeMachine.fill(water, milk, beans, cups);
+                    break;
+                case "take":
+                    System.out.printf("I gave you $%d", coffeeMachine.take());
+                    break;
+                case "remaining":
+                    coffeeMachine.show();
+                    break;
+                case "exit":
+                    exit = true;
+                    break;
+                default:
+            }
+            System.out.println();
         }
-
-        System.out.println();
-        coffeeMachine.show();
-
 
     }
 }
