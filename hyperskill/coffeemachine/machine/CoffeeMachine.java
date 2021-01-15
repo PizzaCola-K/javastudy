@@ -1,15 +1,8 @@
-package coffeemachine.machine;
+package machine;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class CoffeeMachine {
-    static final int WATER = 200;
-    static final int MILK = 50;
-    static final int BEANS = 15;
 
     private int water;
     private int milk;
@@ -23,18 +16,6 @@ public class CoffeeMachine {
         this.beans = 120;
         this.cups = 9;
         this.money = 550;
-    }
-
-    public void setWater(int water) {
-        this.water = water;
-    }
-
-    public void setMilk(int milk) {
-        this.milk = milk;
-    }
-
-    public void setBeans(int beans) {
-        this.beans = beans;
     }
 
     public boolean buy(Coffee coffee) {
@@ -83,38 +64,9 @@ public class CoffeeMachine {
         System.out.printf("%d of money%n", this.money);
     }
 
-    public boolean estimate(int cups) {
-        int waterNeed = cups * CoffeeMachine.WATER;
-        int milkNeed = cups * CoffeeMachine.MILK;
-        int beansNeed = cups * CoffeeMachine.BEANS;
-
-        int count = this.water / CoffeeMachine.WATER;
-        if (count > this.milk / CoffeeMachine.MILK) {
-            count = this.milk / CoffeeMachine.MILK;
-        }
-        if (count > this.beans / CoffeeMachine.BEANS) {
-            count = this.beans / CoffeeMachine.BEANS;
-        }
-
-        if (this.water > waterNeed && this.milk > milkNeed && this.beans > beansNeed) {
-            System.out.print("Yes, I can make that amount of coffee");
-            if (count > cups) {
-                System.out.printf(" (and even %d more than that)", count - cups);
-            }
-            System.out.println();
-            return true;
-        } else {
-            System.out.printf("No, I can make only %d cup(s) of coffee%n", count);
-            return false;
-        }
-
-    }
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         CoffeeMachine coffeeMachine = new CoffeeMachine();
-
-        // coffeeMachine.show();
 
         boolean exit = false;
         while (!exit) {
