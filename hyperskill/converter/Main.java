@@ -1,7 +1,14 @@
 package converter;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("10 = 0b1010");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.next();
+        if (input.matches("\\d+")) {
+            int num = Integer.parseInt(input);
+            System.out.println(num % 8);
+        }
     }
 }
