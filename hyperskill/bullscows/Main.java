@@ -126,20 +126,27 @@ public class Main {
                 input = scanner.next();
                 if(input.matches("\\d+")) {
                     symbols = Integer.parseInt(input);
-                    code = getUniqueDigitsCode(length, symbols);
-                    if (code == null) {
-                        System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.%n", length);
-                    } else {
-                        exit = true;
-                        printPrepared(length, symbols);
-                        System.out.println("Okay, let's start a game!");
-                        pattern = makePattern(length, symbols);
+                    if (length == 0) {
+                        System.out.println("Error: length must be greater than 0");
+                        System.exit(-1);
+                    } else if (length > symbols) {
+                        System.out.printf("Error: it's not possible to generate a code with a length of %d with %d unique symbols.%n", length, symbols);
+                        System.exit(-1);
+                    } else if (symbols > 36) {
+                        System.out.println("Error: maximum number of possible symbols in the code is 36 (0-9, a-z).");
+                        System.exit(-1);
                     }
+                    code = getUniqueDigitsCode(length, symbols);
+                    exit = true;
+                    printPrepared(length, symbols);
+                    System.out.println("Okay, let's start a game!");
+                    pattern = makePattern(length, symbols);
                 } else {
                     System.out.println("Input is not a Number.");
                 }
             } else {
-                System.out.println("Input is not a Number.");
+                System.out.printf("Error: \"%s\" isn't a valid number.", input);
+                System.exit(-1);
             }
         }
 
