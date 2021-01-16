@@ -1,87 +1,124 @@
 package bullscows;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void bullscows() {
-        int num = new Random().ints(1, 1000,10000)
-                .findFirst().getAsInt();
-
-        char[] code = new char[4];
-        for (int i = 3; i >= 0; i--) {
-            code[i] = (char) (num % 10 + '0');
-            num /= 10;
-        }
-
-        Scanner scanner = new Scanner(System.in);
-
-        String guessStr = scanner.next();
-        int bulls = 0;
-        int cows = 0;
-        if (guessStr.matches("\\d{" + code.length + "}")) {
-            char[] guess = guessStr.toCharArray();
-
-            for (int i = 0; i < code.length; i++) {
-                for (int j = 0; j < guess.length; j++) {
-                    if (code[i] == guess[j]) {
-                        if (i == j) {
-                            bulls++;
-                        } else {
-                            cows++;
-                        }
-                        break;
-                    }
-                }
-            }
-
-            System.out.print("Grade: ");
-            if (bulls == 0 && cows == 0) {
-                System.out.print("None.");
-            } else if (bulls > 0 && cows == 0) {
-                System.out.printf("%d bull(s).", bulls);
-            } else if (bulls > 0 && cows > 0) {
-                System.out.printf("%d bull(s) and %d cow(s).", bulls, cows);
+    public static void printGrade(int bulls, int cows) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Grade: ");
+        if (bulls == 0 && cows == 0) {
+            sb.append("None.");
+        } else if (bulls > 0 && cows == 0) {
+            if (bulls == 1) {
+                sb.append("1 bull.");
             } else {
-                System.out.printf("%d cows(s).", cows);
+                sb.append(bulls);
+                sb.append(" bulls.");
             }
-            System.out.printf(" The secret code is %s.%n", String.valueOf(code));
+        } else if (bulls > 0 && cows > 0) {
+            if (bulls == 1) {
+                sb.append("1 bull and ");
+            } else {
+                sb.append(bulls);
+                sb.append(" bulls and ");
+            }
+
+            if (cows == 1) {
+                sb.append("1 cow.");
+            } else {
+                sb.append(cows);
+                sb.append(" cows.");
+            }
         } else {
-            System.out.println("wrong input");
+            if (cows == 1) {
+                sb.append("1 cow.");
+            } else {
+                sb.append(cows);
+                sb.append(" cows.");
+            }
         }
+        System.out.println(sb);
+    }
+
+    public static char[] getUniqueDigitsCode(int length) {
+        if (length <= 0 || length > 10) {
+            return null;
+        }
+        char[] code = new char[length];
+        long pseudoRandomNumber = System.nanoTime();
+        int count = 0;
+        boolean[] uniqueDigits = new boolean[10];
+        while (count < length) {
+            int digit = (int) (pseudoRandomNumber % 10);
+            if (!(count == 0 && digit == 0) && !uniqueDigits[digit]) {
+                code[count] = (char) (digit + '0');
+                uniqueDigits[digit] = true;
+                count++;
+            }
+            pseudoRandomNumber /= 10;
+            if (pseudoRandomNumber == 0) {
+                pseudoRandomNumber = System.nanoTime();
+            }
+        }
+        return code;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean[] uniqueDigits = new boolean[10];
-
-        String input = scanner.next();
         int length;
-        if (input.matches("\\d+")) {
-            length = Integer.parseInt(input);
-            if (0 <= length && length <= 10) {
-                char[] code = new char[length];
-                long pseudoRandomNumber = System.nanoTime();
-                int count = 0;
-                while (count < length) {
-                    int digit = (int) (pseudoRandomNumber % 10);
-                    if (!(count == 0 && digit == 0) && !uniqueDigits[digit]) {
-                        code[count] = (char) (digit + '0');
-                        uniqueDigits[digit] = true;
-                        count++;
-                    }
-                    pseudoRandomNumber /= 10;
-                    if (pseudoRandomNumber == 0) {
-                        pseudoRandomNumber = System.nanoTime();
-                    }
+        char[] code = null;
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("Please, enter the secret code's length:");
+            String input = scanner.next();
+            if (input.matches("\\d+")) {
+                length = Integer.parseInt(input);
+                code = getUniqueDigitsCode(length);
+                if (code == null) {
+                    System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.%n", length);
+                } else {
+                    System.out.println("Okay, let's start a game!");
+                    exit = true;
                 }
-                System.out.printf("The random secret number is %s.%n", String.valueOf(code));
             } else {
-                System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.%n", length);
+                System.out.println("Input is not a Number.");
             }
         }
+        int turn = 1;
 
+        System.out.println(String.valueOf(code));
+        exit = false;
+        String pattern = "\\d{" + code.length + "}";
+        while (!exit) {
+            System.out.printf("Turn %d:%n", turn);
+            String guessStr = scanner.next();
+            if (guessStr.matches(pattern)) {
+                int bulls = 0;
+                int cows = 0;
+                char[] guess = guessStr.toCharArray();
+                for (int i = 0; i < code.length; i++) {
+                    for (int j = 0; j < guess.length; j++) {
+                        if (code[j] == guess[i]) {
+                            if (i == j) {
+                                bulls++;
+                            } else {
+                                cows++;
+                            }
+                            break;
+                        }
+                    }
+                }
 
+                printGrade(bulls, cows);
+                if (bulls == code.length) {
+                    System.out.println("Congratulations! You guessed the secret code.");
+                    exit = true;
+                }
+                turn++;
+            } else {
+                System.out.println("Input Error. please input number.");
+            }
+        }
     }
 }
