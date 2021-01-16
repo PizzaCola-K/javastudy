@@ -5,6 +5,46 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static String makePattern(int length, int symbols) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[0-");
+        if (symbols <= 10) {
+            sb.append(symbols - 1);
+        } else {
+            sb.append("9a-");
+            sb.append((char)(symbols - 11 + 'a'));
+        }
+        sb.append("]{");
+        sb.append(length);
+        sb.append("}");
+        return sb.toString();
+    }
+
+    public static void printPrepared(int length, int symbols) {
+        System.out.print("The secret is prepared: ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            sb.append("*");
+        }
+        sb.append(" ");
+        System.out.print(sb);
+        if (symbols <= 10) {
+            if (symbols == 1) {
+                System.out.print("(0).");
+            } else {
+                System.out.printf("(0-%d).", symbols - 1);
+            }
+        } else {
+            System.out.print("(0-9, ");
+            if (symbols == 11) {
+                System.out.print("a).");
+            } else {
+                System.out.printf("a-%c).", (char) (symbols - 11 + 'a'));
+            }
+        }
+        System.out.println();
+    }
+
     public static void printGrade(int bulls, int cows) {
         StringBuilder sb = new StringBuilder();
         sb.append("Grade: ");
@@ -42,19 +82,26 @@ public class Main {
         System.out.println(sb);
     }
 
-    public static char[] getUniqueDigitsCode(int length) {
-        if (length <= 0 || length > 10) {
+    public static char[] getUniqueDigitsCode(int length, int symbols) {
+        if (symbols > 36) {
+            return null;
+        }
+        if (length <= 0 || length > symbols) {
             return null;
         }
         char[] code = new char[length];
         int count = 0;
         Random random = new Random();
 
-        boolean[] uniqueDigits = new boolean[10];
+        boolean[] uniqueDigits = new boolean[symbols];
         while (count < length) {
-            int digit = random.nextInt(10);
+            int digit = random.nextInt(symbols);
             if (!(count == 0 && digit == 0) && !uniqueDigits[digit]) {
-                code[count] = (char) (digit + '0');
+                if (digit < 10) {
+                    code[count] = (char) (digit + '0');
+                } else {
+                    code[count] = (char) (digit - 10 + 'a');
+                }
                 uniqueDigits[digit] = true;
                 count++;
             }
@@ -65,29 +112,43 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int length;
+        int symbols;
         char[] code = null;
         boolean exit = false;
+
+        String pattern = null;
         while (!exit) {
-            System.out.println("Please, enter the secret code's length:");
+            System.out.println("Input the length of the secret code:");
             String input = scanner.next();
             if (input.matches("\\d+")) {
                 length = Integer.parseInt(input);
-                code = getUniqueDigitsCode(length);
-                if (code == null) {
-                    System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.%n", length);
+                System.out.println("Input the number of possible symbols in the code:");
+                input = scanner.next();
+                if(input.matches("\\d+")) {
+                    symbols = Integer.parseInt(input);
+                    code = getUniqueDigitsCode(length, symbols);
+                    if (code == null) {
+                        System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.%n", length);
+                    } else {
+                        exit = true;
+                        printPrepared(length, symbols);
+                        System.out.println("Okay, let's start a game!");
+                        pattern = makePattern(length, symbols);
+                    }
                 } else {
-                    System.out.println("Okay, let's start a game!");
-                    exit = true;
+                    System.out.println("Input is not a Number.");
                 }
             } else {
                 System.out.println("Input is not a Number.");
             }
         }
+
         int turn = 1;
 
         // System.out.println(String.valueOf(code));
         exit = false;
-        String pattern = "\\d{" + code.length + "}";
+        // System.out.println(pattern);
+
         while (!exit) {
             System.out.printf("Turn %d:%n", turn);
             String guessStr = scanner.next();
@@ -107,7 +168,6 @@ public class Main {
                         }
                     }
                 }
-
                 printGrade(bulls, cows);
                 if (bulls == code.length) {
                     System.out.println("Congratulations! You guessed the secret code.");
