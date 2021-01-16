@@ -1,5 +1,6 @@
 package bullscows;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -46,19 +47,16 @@ public class Main {
             return null;
         }
         char[] code = new char[length];
-        long pseudoRandomNumber = System.nanoTime();
         int count = 0;
+        Random random = new Random();
+
         boolean[] uniqueDigits = new boolean[10];
         while (count < length) {
-            int digit = (int) (pseudoRandomNumber % 10);
+            int digit = random.nextInt(10);
             if (!(count == 0 && digit == 0) && !uniqueDigits[digit]) {
                 code[count] = (char) (digit + '0');
                 uniqueDigits[digit] = true;
                 count++;
-            }
-            pseudoRandomNumber /= 10;
-            if (pseudoRandomNumber == 0) {
-                pseudoRandomNumber = System.nanoTime();
             }
         }
         return code;
@@ -87,7 +85,7 @@ public class Main {
         }
         int turn = 1;
 
-        System.out.println(String.valueOf(code));
+        // System.out.println(String.valueOf(code));
         exit = false;
         String pattern = "\\d{" + code.length + "}";
         while (!exit) {
