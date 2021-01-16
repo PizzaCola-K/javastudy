@@ -4,7 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+
+    public static void bullscows() {
         int num = new Random().ints(1, 1000,10000)
                 .findFirst().getAsInt();
 
@@ -49,6 +50,38 @@ public class Main {
         } else {
             System.out.println("wrong input");
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean[] uniqueDigits = new boolean[10];
+
+        String input = scanner.next();
+        int length;
+        if (input.matches("\\d+")) {
+            length = Integer.parseInt(input);
+            if (0 <= length && length <= 10) {
+                char[] code = new char[length];
+                long pseudoRandomNumber = System.nanoTime();
+                int count = 0;
+                while (count < length) {
+                    int digit = (int) (pseudoRandomNumber % 10);
+                    if (!(count == 0 && digit == 0) && !uniqueDigits[digit]) {
+                        code[count] = (char) (digit + '0');
+                        uniqueDigits[digit] = true;
+                        count++;
+                    }
+                    pseudoRandomNumber /= 10;
+                    if (pseudoRandomNumber == 0) {
+                        pseudoRandomNumber = System.nanoTime();
+                    }
+                }
+                System.out.printf("The random secret number is %s.%n", String.valueOf(code));
+            } else {
+                System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.%n", length);
+            }
+        }
+
 
     }
 }
