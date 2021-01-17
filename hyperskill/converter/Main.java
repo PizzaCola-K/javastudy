@@ -4,51 +4,125 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static int parseIntBase1(String source) {
-        int result = 0;
+    public static String doubleFractionToString(double d, int radix) {
+        StringBuilder sb = new StringBuilder();
+        double num = d;
+        for (int i = 0; i < 5; i++) {
+            num *= radix;
+            int frac = (int) num;
+            if (frac <= 9) {
+                sb.append(frac);
+            } else {
+                sb.append((char)(frac - 10 + 'a'));
+            }
+            num -= frac;
+        }
+        return sb.toString();
+    }
 
-        for (char c : source.toCharArray()) {
-            result++;
+    public static double fractionParseDouble(String s, int radix) {
+        if (s == null) {
+            throw new NullPointerException("Input String is null");
+        }
+        if (radix < Character.MIN_RADIX || radix > Character.MAX_RADIX) {
+            throw new NumberFormatException();
+        }
+        double result = 0;
+        double currentRadix = radix;
+        for (char c : s.toCharArray()) {
+            int val = 0;
+            if ('0' <= c && c <= '9') {
+                val = c - '0';
+            } else if ('a' <= c && c <= 'z') {
+                val = c - 'a' + 10;
+            } else {
+                throw new NumberFormatException();
+            }
+            result += val / currentRadix;
+            currentRadix *= radix;
         }
         return result;
     }
+
+    public static String intToString(int i, int radix) {
+        if (radix == 1) {
+            int num = i;
+            StringBuilder sb = new StringBuilder();
+            if (num < 0) {
+                sb.append('-');
+                num = -num;
+            }
+            for (int ii = 0; ii < num; ii++) {
+                sb.append('1');
+            }
+            return sb.toString();
+        } else {
+            return Integer.toString(i, radix);
+        }
+    }
+
+    public static int parseInt(String s, int radix) {
+        if (s == null) {
+            throw new NullPointerException("Input String is null");
+        }
+
+        if (radix == 1) {
+            int result = 0;
+            boolean isNeg = false;
+            int idx = 0;
+            if (s.charAt(0) == '-') {
+                isNeg = true;
+                idx++;
+            } else if (s.charAt(0) == '+') {
+                idx++;
+            }
+            while (idx < s.length()) {
+                if (s.charAt(idx) == '1') {
+                    result++;
+                } else {
+                    throw new NumberFormatException();
+                }
+                idx++;
+            }
+            if (isNeg) {
+                result = - result;
+            }
+            return result;
+        } else {
+            return Integer.parseInt(s, radix);
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String sourceRadixStr = scanner.next();
         String sourceNumberStr = scanner.next();
         String targetRadixStr = scanner.next();
-        String pattern = "\\d+";
+        String doublePattern = "[+-]?[0-9a-z]+(\\.[0-9a-z]+)?";
+        String intPattern = "[+-]?\\d+";
 
-        if (!sourceRadixStr.matches(pattern) || !sourceNumberStr.matches(pattern)
-                || !targetRadixStr.matches(pattern)) {
+        if (!sourceRadixStr.matches(intPattern) || !sourceNumberStr.matches(doublePattern)
+                || !targetRadixStr.matches(intPattern)) {
             System.exit(-1);
         }
 
         int sourceRadix = Integer.parseInt(sourceRadixStr);
-        int sourceNuber = 0;
+        int sourceNumber = 0;
         int targetRadix = Integer.parseInt(targetRadixStr);
-        if (sourceRadix == 1) {
-            sourceNuber = parseIntBase1(sourceNumberStr);
-        } else if (Character.MIN_RADIX <= sourceRadix && sourceRadix <= Character.MAX_RADIX) {
-            sourceNuber = Integer.parseInt(sourceNumberStr, sourceRadix);
+        if (sourceNumberStr.matches(intPattern)) {
+            sourceNumber = parseInt(sourceNumberStr, sourceRadix);
+            String targetNumberStr = intToString(sourceNumber, targetRadix);
+            System.out.println(targetNumberStr);
         } else {
-            System.exit(-1);
+            String[] number = sourceNumberStr.split("\\.");
+            String integerStr = number[0];
+            String fractionStr = number[1];
+            int integer = parseInt(integerStr, sourceRadix);
+            double fraction = fractionParseDouble(fractionStr, sourceRadix);
+            String targetIntStr = intToString(integer,targetRadix);
+            String targetFractionStr = doubleFractionToString(fraction, targetRadix);
+            String targetNumberStr = targetIntStr + "." + targetFractionStr;
+            System.out.println(targetNumberStr);
         }
-
-        StringBuilder sb = new StringBuilder();
-        String targetNumberStr;
-        if (targetRadix == 1) {
-            for (int i = 0; i < sourceNuber; i++) {
-                sb.append('1');
-            }
-            targetNumberStr = sb.toString();
-        } else if (Character.MIN_RADIX <= targetRadix && targetRadix <= Character.MAX_RADIX) {
-            targetNumberStr = Integer.toString(sourceNuber, targetRadix);
-        } else {
-            targetNumberStr = "0";
-        }
-
-        System.out.println(targetNumberStr);
-
     }
 }
