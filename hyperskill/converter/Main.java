@@ -4,6 +4,27 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static String makeNumberPattern(int radix) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[+-]?");
+        if (radix == 1) {
+            sb.append("1+");
+        } else if (radix <= 10) {
+            String numPat = "[0-" + (radix - 1) + "]+";
+            sb.append(numPat);
+            sb.append("(\\.");
+            sb.append(numPat);
+            sb.append(")?");
+        } else if (radix <= 36) {
+            String numPat = "[0-9a-" + (char) (radix - 11 + 'a') + "]+";
+            sb.append(numPat);
+            sb.append("(\\.");
+            sb.append(numPat);
+            sb.append(")?");
+        }
+        return sb.toString();
+    }
+
     public static String doubleFractionToString(double d, int radix) {
         StringBuilder sb = new StringBuilder();
         double num = d;
@@ -95,20 +116,44 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String sourceRadixStr = scanner.next();
-        String sourceNumberStr = scanner.next();
-        String targetRadixStr = scanner.next();
-        String doublePattern = "[+-]?[0-9a-z]+(\\.[0-9a-z]+)?";
-        String intPattern = "[+-]?\\d+";
 
-        if (!sourceRadixStr.matches(intPattern) || !sourceNumberStr.matches(doublePattern)
-                || !targetRadixStr.matches(intPattern)) {
+
+        String intPattern = "[+-]?[0-9a-z]+";
+        String radixPattern = "\\d+";
+
+        int sourceRadix;
+        int targetRadix;
+        String sourceRadixStr = scanner.next();
+        if (!sourceRadixStr.matches(radixPattern)) {
+            System.out.println("error: Source Radix Not a Number");
+            System.exit(-1);
+        }
+        sourceRadix = Integer.parseInt(sourceRadixStr);
+        if (sourceRadix < 1 || sourceRadix > Character.MAX_RADIX) {
+            System.out.println("error: Source Radix Out of Range");
             System.exit(-1);
         }
 
-        int sourceRadix = Integer.parseInt(sourceRadixStr);
+        String numberPattern = makeNumberPattern(sourceRadix);
+        String sourceNumberStr = scanner.next();
+        if (!sourceNumberStr.matches(numberPattern)) {
+            System.out.println("error: Source is Not a Number");
+            System.exit(-1);
+        }
+
+
+        String targetRadixStr = scanner.next();
+        if (!targetRadixStr.matches(radixPattern)) {
+            System.out.println("error: Target Radix Not a Number");
+            System.exit(-1);
+        }
+        targetRadix = Integer.parseInt(targetRadixStr);
+        if (targetRadix < 1 || targetRadix > Character.MAX_RADIX) {
+            System.out.println("error: Target Radix Out of Range");
+            System.exit(-1);
+        }
+
         int sourceNumber = 0;
-        int targetRadix = Integer.parseInt(targetRadixStr);
         if (sourceNumberStr.matches(intPattern)) {
             sourceNumber = parseInt(sourceNumberStr, sourceRadix);
             String targetNumberStr = intToString(sourceNumber, targetRadix);
