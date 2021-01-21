@@ -55,7 +55,7 @@ public class Main {
                     continue;
                 }
 
-                if (setShipOnBoard(headRow, headCol, tailRow, tailCol, board)) {
+                if (board.setShipOnBoard(headRow, headCol, tailRow, tailCol)) {
                     inputCheck = true;
                 } else {
                     System.out.printf("%nError! You placed it too close to another one. Try again:%n%n");
@@ -64,42 +64,42 @@ public class Main {
             System.out.println();
             board.show();
         }
-    }
 
-    public static boolean setShipOnBoard(int headRow, int headCol, int tailRow, int tailCol, Board board) {
-        int startRow;
-        int endRow;
-        int startCol;
-        int endCol;
-        if (headRow > tailRow) {
-            startRow = tailRow;
-            endRow = headRow;
-        } else {
-            startRow = headRow;
-            endRow = tailRow;
-        }
-        if (headCol > tailCol) {
-            startCol = tailCol;
-            endCol = headCol;
-        } else {
-            startCol = headCol;
-            endCol = tailCol;
-        }
+        System.out.printf("%nThe game starts!%n%n");
 
-        for (int i = startRow - 1; i <= endRow + 1; i++) {
-            for (int j = startCol - 1; j <= endCol + 1; j++) {
-                if (board.board[i][j * 2] != '~') {
-                    return false;
-                }
+        board.show();
+
+        System.out.printf("%nTake a shot!%n%n");
+        boolean inputCheck = false;
+        int targetRow = 0;
+        int targetCol = 0;
+        while (!inputCheck) {
+            String target = scanner.next();
+            System.out.println();
+            parse(target, buf);
+            targetRow = buf[0];
+            targetCol = buf[1];
+
+            if (!board.checkRange(targetRow, targetCol)) {
+                System.out.printf("%nError! You entered the wrong coordinates! Try again:%n");
+                continue;
             }
+
+
+            inputCheck = true;
         }
 
-        for (int i = startRow; i <= endRow; i++) {
-            for (int j = startCol; j <= endCol; j++) {
-                board.board[i][j * 2] = 'O';
-            }
+        boolean isHit = board.shoot(targetRow, targetCol);
+
+
+        board.show();
+
+        System.out.println();
+        if (isHit) {
+            System.out.println("You hit a ship!");
+        } else {
+            System.out.println("You missed!");
         }
-        return true;
     }
 
     public static int getLength(int headRow, int headCol, int tailRow, int tailCol) {
@@ -160,7 +160,12 @@ class AircraftCarrier {
 class Board {
     char[][] board;
 
+    private int rows;
+    private int cols;
+
     public Board(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
         board = new char[rows + 2][cols * 2 + 4];
         for (char[] row : board) {
             for (int i = 0; i < row.length; i += 2) {
@@ -185,5 +190,59 @@ class Board {
             System.out.println();
             rowIdx++;
         }
+    }
+
+    public boolean checkRange(int row, int col) {
+        if (1 <= row && row <= rows && 1 <= col && col <= cols) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean shoot(int row, int col) {
+        if (board[row][col * 2] == 'O') {
+            board[row][col * 2] = 'X';
+            return true;
+        } else {
+            board[row][col * 2] = 'M';
+            return false;
+        }
+    }
+
+    public boolean setShipOnBoard(int headRow, int headCol, int tailRow, int tailCol) {
+        int startRow;
+        int endRow;
+        int startCol;
+        int endCol;
+        if (headRow > tailRow) {
+            startRow = tailRow;
+            endRow = headRow;
+        } else {
+            startRow = headRow;
+            endRow = tailRow;
+        }
+        if (headCol > tailCol) {
+            startCol = tailCol;
+            endCol = headCol;
+        } else {
+            startCol = headCol;
+            endCol = tailCol;
+        }
+
+        for (int i = startRow - 1; i <= endRow + 1; i++) {
+            for (int j = startCol - 1; j <= endCol + 1; j++) {
+                if (board[i][j * 2] != '~') {
+                    return false;
+                }
+            }
+        }
+
+        for (int i = startRow; i <= endRow; i++) {
+            for (int j = startCol; j <= endCol; j++) {
+                board[i][j * 2] = 'O';
+            }
+        }
+        return true;
     }
 }
