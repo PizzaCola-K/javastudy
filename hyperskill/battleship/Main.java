@@ -21,7 +21,7 @@ public class Main {
                 "Destroyer"
         };
         int[] shipLengthArray = {5,4,3,3,2};
-        board.show();
+        board.show(Board.Mode.REVEAL);
         for (int i = 0; i < 5; i++) {
             System.out.printf("%nEnter the coordinates of the %s (%d cells):%n%n", shipNameArray[i], shipLengthArray[i]);
 
@@ -62,12 +62,12 @@ public class Main {
                 }
             }
             System.out.println();
-            board.show();
+            board.show(Board.Mode.REVEAL);
         }
 
         System.out.printf("%nThe game starts!%n%n");
 
-        board.show();
+        board.show(Board.Mode.FOG);
 
         System.out.printf("%nTake a shot!%n%n");
         boolean inputCheck = false;
@@ -92,7 +92,7 @@ public class Main {
         boolean isHit = board.shoot(targetRow, targetCol);
 
 
-        board.show();
+        board.show(Board.Mode.FOG);
 
         System.out.println();
         if (isHit) {
@@ -100,6 +100,8 @@ public class Main {
         } else {
             System.out.println("You missed!");
         }
+
+        board.show(Board.Mode.REVEAL);
     }
 
     public static int getLength(int headRow, int headCol, int tailRow, int tailCol) {
@@ -136,29 +138,10 @@ public class Main {
     }
 }
 
-class Point {
-    int row;
-    int col;
-
-    public Point(int row, int col) {
-        this.row = row;
-        this.col = col;
-    }
-}
-
-class AircraftCarrier {
-    Point head;
-    Point tail;
-
-    private AircraftCarrier(Point head, Point tail) {
-        this.head = head;
-        this.tail = tail;
-    }
-
-}
 
 class Board {
-    char[][] board;
+    private char[][] board;
+    private char[][] fogBoard;
 
     private int rows;
     private int cols;
@@ -166,16 +149,26 @@ class Board {
     public Board(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        board = new char[rows + 2][cols * 2 + 4];
-        for (char[] row : board) {
-            for (int i = 0; i < row.length; i += 2) {
-                row[i] = '~';
-                row[i + 1] = ' ';
-            }
-        }
+        this.board = mkBoard(rows, cols);
+        this.fogBoard = mkBoard(rows, cols);
     }
 
-    public void show() {
+    public enum Mode {
+        FOG,
+        REVEAL
+    }
+
+    public void show(Mode mode) {
+        char[][] board = null;
+        switch (mode) {
+            case REVEAL:
+                board = this.board;
+                break;
+            case FOG:
+                board = this.fogBoard;
+                break;
+        }
+
         System.out.print("  ");
         for (int i = 1; i <= 10; i++) {
             System.out.printf("%d ", i);
@@ -203,9 +196,11 @@ class Board {
     public boolean shoot(int row, int col) {
         if (board[row][col * 2] == 'O') {
             board[row][col * 2] = 'X';
+            fogBoard[row][col * 2] = 'X';
             return true;
         } else {
             board[row][col * 2] = 'M';
+            fogBoard[row][col * 2] = 'M';
             return false;
         }
     }
@@ -244,5 +239,16 @@ class Board {
             }
         }
         return true;
+    }
+
+    private char[][] mkBoard(int rows, int cols) {
+        char[][] board = new char[rows + 2][cols * 2 + 4];
+        for (char[] row : board) {
+            for (int i = 0; i < row.length; i += 2) {
+                row[i] = '~';
+                row[i + 1] = ' ';
+            }
+        }
+        return board;
     }
 }
