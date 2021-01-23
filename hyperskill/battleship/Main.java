@@ -1,5 +1,6 @@
 package battleship;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,7 +56,7 @@ public class Main {
                     continue;
                 }
 
-                if (board.setShipOnBoard(headRow, headCol, tailRow, tailCol)) {
+                if (board.setShipOnBoard(shipLength, shipNameArray[i], headRow, headCol, tailRow, tailCol)) {
                     inputCheck = true;
                 } else {
                     System.out.printf("%nError! You placed it too close to another one. Try again:%n%n");
@@ -70,38 +71,45 @@ public class Main {
         board.show(Board.Mode.FOG);
 
         System.out.printf("%nTake a shot!%n%n");
-        boolean inputCheck = false;
-        int targetRow = 0;
-        int targetCol = 0;
-        while (!inputCheck) {
-            String target = scanner.next();
-            System.out.println();
-            parse(target, buf);
-            targetRow = buf[0];
-            targetCol = buf[1];
 
-            if (!board.checkRange(targetRow, targetCol)) {
-                System.out.printf("%nError! You entered the wrong coordinates! Try again:%n");
-                continue;
+        boolean gameEnd = false;
+        while (!gameEnd) {
+            boolean inputCheck = false;
+            int targetRow = 0;
+            int targetCol = 0;
+            while (!inputCheck) {
+                String target = scanner.next();
+                System.out.println();
+                parse(target, buf);
+                targetRow = buf[0];
+                targetCol = buf[1];
+
+                if (!board.checkRange(targetRow, targetCol)) {
+                    System.out.printf("%nError! You entered the wrong coordinates! Try again:%n");
+                    continue;
+                }
+
+
+                inputCheck = true;
             }
 
+            int isHit = board.shoot(targetRow, targetCol);
 
-            inputCheck = true;
+            board.show(Board.Mode.FOG);
+
+            System.out.println();
+            if (isHit == 1) {
+                System.out.println("You hit a ship! Try again:");
+            } else if (isHit == 2) {
+                System.out.println("You sank a ship! Specify a new target:");
+            } else if (isHit == 3) {
+                System.out.println("You sank the last ship. You won. Congratulations!");
+                gameEnd = true;
+            } else {
+                System.out.println("You missed. Try again:");
+            }
+            System.out.println();
         }
-
-        boolean isHit = board.shoot(targetRow, targetCol);
-
-
-        board.show(Board.Mode.FOG);
-
-        System.out.println();
-        if (isHit) {
-            System.out.println("You hit a ship!");
-        } else {
-            System.out.println("You missed!");
-        }
-
-        board.show(Board.Mode.REVEAL);
     }
 
     public static int getLength(int headRow, int headCol, int tailRow, int tailCol) {
@@ -142,6 +150,7 @@ public class Main {
 class Board {
     private char[][] board;
     private char[][] fogBoard;
+    private ArrayList<Ship> ships;
 
     private int rows;
     private int cols;
@@ -151,6 +160,7 @@ class Board {
         this.cols = cols;
         this.board = mkBoard(rows, cols);
         this.fogBoard = mkBoard(rows, cols);
+        this.ships = new ArrayList<>();
     }
 
     public enum Mode {
@@ -193,19 +203,50 @@ class Board {
         }
     }
 
-    public boolean shoot(int row, int col) {
+    public int shoot(int row, int col) {
+        // return 0 : MISS
+        // return 1 : HIT
+        // return 2 : SANK
+        // return 3 : GAME END
         if (board[row][col * 2] == 'O') {
+            boolean isSank = false;
+            for (Ship ship : ships) {
+                if (ship.isHit(row, col)) {
+                    ship.hitCount++;
+                    if (ship.isSank()) {
+                        isSank = true;
+                    }
+                    break;
+                }
+            }
+
             board[row][col * 2] = 'X';
             fogBoard[row][col * 2] = 'X';
-            return true;
+            if (isSank) {
+                int sankCount = 0;
+                for (Ship ship : ships) {
+                    if (ship.isSank()) {
+                        sankCount++;
+                    }
+                }
+                if (sankCount == ships.size()) {
+                    return 3;
+                } else {
+                    return 2;
+                }
+            } else {
+                return 1;
+            }
+        } else if (board[row][col * 2] == 'X') {
+            return 1;
         } else {
             board[row][col * 2] = 'M';
             fogBoard[row][col * 2] = 'M';
-            return false;
+            return 0;
         }
     }
 
-    public boolean setShipOnBoard(int headRow, int headCol, int tailRow, int tailCol) {
+    public boolean setShipOnBoard(int length, String name, int headRow, int headCol, int tailRow, int tailCol) {
         int startRow;
         int endRow;
         int startCol;
@@ -233,6 +274,9 @@ class Board {
             }
         }
 
+        Ship ship = new Ship(length, name, headRow, headCol, tailRow, tailCol);
+        this.ships.add(ship);
+
         for (int i = startRow; i <= endRow; i++) {
             for (int j = startCol; j <= endCol; j++) {
                 board[i][j * 2] = 'O';
@@ -250,5 +294,73 @@ class Board {
             }
         }
         return board;
+    }
+
+    class Ship {
+
+        private String name;
+        private int length;
+        private Point[] body;
+        private int hitCount;
+
+        public Ship(int length, String name, int headRow, int headCol, int tailRow, int tailCol) {
+            this.length = length;
+            this.name = name;
+            this.hitCount = 0;
+
+            int startRow;
+            int endRow;
+            int startCol;
+            int endCol;
+            if (headRow > tailRow) {
+                startRow = tailRow;
+                endRow = headRow;
+            } else {
+                startRow = headRow;
+                endRow = tailRow;
+            }
+            if (headCol > tailCol) {
+                startCol = tailCol;
+                endCol = headCol;
+            } else {
+                startCol = headCol;
+                endCol = tailCol;
+            }
+
+            this.body = new Point[length];
+            int idx = 0;
+            for (int i = startRow; i <= endRow; i++) {
+                for (int j = startCol; j <= endCol; j++) {
+                    this.body[idx] = new Point(i, j);
+                    idx++;
+                }
+            }
+        }
+
+        public boolean isHit(int row, int col) {
+            for (Point p : body) {
+                if (p.match(row, col)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public boolean isSank() {
+            return length <= hitCount;
+        }
+    }
+    class Point {
+        int row;
+        int col;
+
+        public Point(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+
+        public boolean match(int row, int col) {
+            return this.row == row && this.col == col;
+        }
     }
 }
