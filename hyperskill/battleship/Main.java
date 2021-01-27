@@ -1,5 +1,6 @@
 package battleship;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -10,7 +11,11 @@ public class Main {
     public static void main(String[] args) {
         // Write your code here
         Scanner scanner = new Scanner(System.in);
-        Board board = new Board(10, 10);
+
+        Board[] playerBoard = new Board[2];
+
+        playerBoard[0] = new Board(10,10);
+        playerBoard[1] = new Board(10,10);
 
         int[] buf = new int[2];
 
@@ -22,58 +27,81 @@ public class Main {
                 "Destroyer"
         };
         int[] shipLengthArray = {5,4,3,3,2};
-        board.show(Board.Mode.REVEAL);
-        for (int i = 0; i < 5; i++) {
-            System.out.printf("%nEnter the coordinates of the %s (%d cells):%n%n", shipNameArray[i], shipLengthArray[i]);
 
-            int headRow;
-            int headCol;
-            int tailRow;
-            int tailCol;
+        for (int player = 0; player < 2; player++) {
+            System.out.printf("Player %d, place your ships on the game field%n", player + 1);
 
-            boolean inputCheck = false;
-            while (!inputCheck) {
-                String head = scanner.next();
-                String tail = scanner.next();
+            for (int i = 0; i < 5; i++) {
+                System.out.println();
+                playerBoard[player].show(Board.Mode.REVEAL);
 
-                parse(head, buf);
-                headRow = buf[0];
-                headCol = buf[1];
+                System.out.printf("%nEnter the coordinates of the %s (%d cells):%n%n", shipNameArray[i], shipLengthArray[i]);
 
-                parse(tail, buf);
-                tailRow = buf[0];
-                tailCol = buf[1];
+                int headRow;
+                int headCol;
+                int tailRow;
+                int tailCol;
 
-                int shipLength = getLength(headRow, headCol, tailRow, tailCol);
+                boolean inputCheck = false;
+                while (!inputCheck) {
+                    String head = scanner.next();
+                    String tail = scanner.next();
 
-                if (shipLength == shipLengthArray[i]) {
+                    parse(head, buf);
+                    headRow = buf[0];
+                    headCol = buf[1];
 
-                } else if (shipLength == 0){
-                    System.out.printf("%nError! Wrong ship location! Try again:%n%n");
-                    continue;
-                } else {
-                    System.out.printf("%nError! Wrong length of the %s! Try again:%n%n", shipNameArray[i]);
-                    continue;
-                }
+                    parse(tail, buf);
+                    tailRow = buf[0];
+                    tailCol = buf[1];
 
-                if (board.setShipOnBoard(shipLength, shipNameArray[i], headRow, headCol, tailRow, tailCol)) {
-                    inputCheck = true;
-                } else {
-                    System.out.printf("%nError! You placed it too close to another one. Try again:%n%n");
+                    int shipLength = getLength(headRow, headCol, tailRow, tailCol);
+
+                    if (shipLength == shipLengthArray[i]) {
+
+                    } else if (shipLength == 0){
+                        System.out.printf("%nError! Wrong ship location! Try again:%n%n");
+                        continue;
+                    } else {
+                        System.out.printf("%nError! Wrong length of the %s! Try again:%n%n", shipNameArray[i]);
+                        continue;
+                    }
+
+                    if (playerBoard[player].setShipOnBoard(shipLength, shipNameArray[i], headRow, headCol, tailRow, tailCol)) {
+                        inputCheck = true;
+                    } else {
+                        System.out.printf("%nError! You placed it too close to another one. Try again:%n%n");
+                    }
                 }
             }
             System.out.println();
-            board.show(Board.Mode.REVEAL);
+            playerBoard[player].show(Board.Mode.REVEAL);
+
+            promptEnterKey();
+            System.out.println("...");
         }
 
-        System.out.printf("%nThe game starts!%n%n");
-
-        board.show(Board.Mode.FOG);
-
-        System.out.printf("%nTake a shot!%n%n");
-
         boolean gameEnd = false;
+        boolean player1Turn = true;
         while (!gameEnd) {
+            Board enemy = null;
+            Board mine = null;
+
+            if (player1Turn) {
+                enemy = playerBoard[1];
+                mine = playerBoard[0];
+            } else {
+                enemy = playerBoard[0];
+                mine = playerBoard[1];
+            }
+
+            System.out.println();
+            enemy.show(Board.Mode.FOG);
+            System.out.println("---------------------");
+            mine.show(Board.Mode.REVEAL);
+
+            System.out.printf("%nPlayer %d, it's your turn:%n%n", (player1Turn)? 1 : 2);
+
             boolean inputCheck = false;
             int targetRow = 0;
             int targetCol = 0;
@@ -84,31 +112,32 @@ public class Main {
                 targetRow = buf[0];
                 targetCol = buf[1];
 
-                if (!board.checkRange(targetRow, targetCol)) {
+                if (!enemy.checkRange(targetRow, targetCol)) {
                     System.out.printf("%nError! You entered the wrong coordinates! Try again:%n");
                     continue;
                 }
-
-
                 inputCheck = true;
             }
 
-            int isHit = board.shoot(targetRow, targetCol);
-
-            board.show(Board.Mode.FOG);
+            int isHit = enemy.shoot(targetRow, targetCol);
 
             System.out.println();
             if (isHit == 1) {
-                System.out.println("You hit a ship! Try again:");
+                System.out.println("You hit a ship!");
             } else if (isHit == 2) {
                 System.out.println("You sank a ship! Specify a new target:");
             } else if (isHit == 3) {
                 System.out.println("You sank the last ship. You won. Congratulations!");
                 gameEnd = true;
+                continue;
             } else {
-                System.out.println("You missed. Try again:");
+                System.out.println("You missed.");
             }
-            System.out.println();
+
+            promptEnterKey();
+            System.out.println("...");
+
+            player1Turn = !player1Turn;
         }
     }
 
@@ -142,6 +171,14 @@ public class Main {
         } else {
             result[0] = -1;
             result[1] = -1;
+        }
+    }
+    public static void promptEnterKey() {
+        System.out.println("Press Enter and pass the move to another player");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
